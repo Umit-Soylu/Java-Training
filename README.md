@@ -9,4 +9,4 @@ Following issues are introduced step by step at each commit. Please use the link
 
 ### Core Concepts of Java
 * [Variables](https://github.com/Umit-Soylu/Java-Training/tree/Variables) are described. Primitive & Hierarchiycal types are examplified.
-* [Classes & Objects] A simple code for creating a class and and instantiating objects. 
+* [Packages](), which allows storing classes in their respected package hierarchy, is introduced.
