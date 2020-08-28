@@ -1,8 +1,5 @@
-package com.bilgeadam.java.exceptions;
+package com.bilgeadam.java.tutorials.exceptions;
 
-// The class that will be tested first needs to be imported
-
-import com.bilgeadam.java.tutorials.exceptions.Exception;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,5 +51,11 @@ class ExceptionTest {
     @Test
     void addition3() {
         assertEquals(Integer.MIN_VALUE, myExc.addition(Integer.MIN_VALUE + 2, -3));
+    }
+
+    @Test
+    void finallyExample() {
+        // This method will not return 1 because finally block executes always as last.
+        assertEquals(0, myExc.finallyExample());
     }
 }
