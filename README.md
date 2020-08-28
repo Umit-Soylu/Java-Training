@@ -18,3 +18,4 @@ Following issues are introduced step by step at each commit. Please use the link
   - Relational operators can be found in [Relational Operators Package](src/com/bilgeadam/java/tutorials/program_flow/relational_operators)
   - Logical operators can be found in [Logical Operators Package](src/com/bilgeadam/java/tutorials/program_flow/logical_operators)
   - Decision operators can be found in [Decision Operators Package](src/com/bilgeadam/java/tutorials/program_flow/decision_operators)
+* [Exceptions](https://github.com/Umit-Soylu/Java-Training/tree/Exceptions) is examplified using mathematical operands and tested via unit tests.
