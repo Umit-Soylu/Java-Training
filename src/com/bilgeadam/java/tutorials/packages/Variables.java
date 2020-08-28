@@ -1,11 +1,11 @@
-package com.bilgeadam.java.tutorials;
+package com.bilgeadam.java.tutorials.packages;
 
 public class Variables {
 
     // Primitive Types
-    byte testByte = 127;        // 8 bit variable   [-128 .. 127]
-    short testShort = 32767;    // 16 bit variable  [-32768 .. 32767]
-    int testInt = 2_147_483_647;// Same as '2147483647'; 32 bit variable
+    protected byte testByte = 127;        // 8 bit variable   [-128 .. 127]
+    private final short testShort = 32767;    // 16 bit variable  [-32768 .. 32767]
+    public int testInt = 2_147_483_647;// Same as '2147483647'; 32 bit variable
     long testLong = 9_223_372_036_854_775_806L; // 64 bit variable
 
     /*
@@ -33,4 +33,22 @@ public class Variables {
 
     String className = "Variables";                     // Special type for storing strings
 
+    private Float getTestObjectFloat(){
+        return testObjectFloat;
+    }
+
+    protected double getTestDouble() {
+        return testDouble;
+    }
+
+    public boolean getTestBoolean(){
+        return testBoolean;
+    }
+
+    // Private methods & variables can only be called within the class itself
+    private void testPrivates(){
+        Float testPrivateFloat = getTestObjectFloat();
+        System.out.println("testPrivateFloat = " + testPrivateFloat);
+        System.out.println("Private testShort = " + testShort);
+    }
 }
