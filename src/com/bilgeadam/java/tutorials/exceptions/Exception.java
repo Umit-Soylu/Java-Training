@@ -51,4 +51,20 @@ public class Exception {
         }
         return z;
     }
+
+    /**
+     * This method throws an exception and executed finally blog regardless.
+     */
+    public int finallyExample(){
+        try {
+            // Throws an exception
+            throw new java.lang.Exception("Demo exception");
+        } catch (java.lang.Exception e) {
+            // Catches the exception but does nothing.
+            return 1;
+        } finally{
+            return 0;
+        }
+
+    }
 }
