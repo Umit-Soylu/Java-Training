@@ -44,4 +44,11 @@ public class Variables {
     public boolean getTestBoolean(){
         return testBoolean;
     }
+
+    // Private methods & variables can only be called within the class itself
+    private void testPrivates(){
+        Float testPrivateFloat = getTestObjectFloat();
+        System.out.println("testPrivateFloat = " + testPrivateFloat);
+        System.out.println("Private testShort = " + testShort);
+    }
 }
