@@ -1,3 +1,5 @@
+package com.bilgeadam.java.tutorials;
+
 public class Variables {
 
     // Primitive Types
