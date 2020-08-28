@@ -10,6 +10,10 @@ class CarTest {
     // The car object.
     Car testCar;
 
+    // The input parameters for car object.
+    String chassisNo = "JAVA-TUTORIAL-0001-CAR", environment = "Air",  engineType= "Diesel";
+    short nbOfPassengers = 1, nbOfDoors = 1;
+
     @BeforeEach
     void setUp() {
         testCar = new Car(chassisNo, environment, nbOfPassengers, nbOfDoors, engineType);
@@ -19,10 +23,6 @@ class CarTest {
     void tearDown() {
         testCar = null;
     }
-
-    // The input parameters for car object.
-    String chassisNo = "JAVA-TUTORIAL-0001-CAR", environment = "Air",  engineType= "Diesel";
-    short nbOfPassengers = 1, nbOfDoors = 1;
 
     /**
      * Test inherited methods from car object.
