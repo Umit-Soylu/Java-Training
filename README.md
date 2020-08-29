@@ -20,3 +20,11 @@ Following issues are introduced step by step at each commit. Please use the link
   - Decision operators can be found in [Decision Operators Package](src/com/bilgeadam/java/tutorials/program_flow/decision_operators)
 * [Exceptions](https://github.com/Umit-Soylu/Java-Training/tree/Exceptions) is examplified using mathematical operands and tested via unit tests.
 * [Constructors](https://github.com/Umit-Soylu/Java-Training/tree/Constructors) are defined. Default constructor and custom constructors are introduced.
+
+## Object Oriented Java
+* [Classes & Objects](https://github.com/Umit-Soylu/Java-Training/tree/ClassesObjects) A simple code for creating a class and and instantiating objects. (New keyword: `static`)
+* Object Oriented Concepts
+  - Aggregation concepts introduced in the [Aggregation Package](/src/com/bilgeadam/java/tutorials/oop/aggreagation/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/oop/aggregation/)) 
+  - Inheritence concepts introduced in the [Inheritance Package](/src/com/bilgeadam/java/tutorials/oop/inheritance/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/oop/inheritance/)) (New keywords: `extends`, and `instanceof`)
+  - Polymorphism concepts introduced in the [Polymorphism Package](/src/com/bilgeadam/java/tutorials/oop/inheritance/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/oop/inheritance/)) (New keywords: `@Override`, `final`, `this`, and `super`) 
+  - Abstraction concepts introduced in the [Abstraction Package](/src/com/bilgeadam/java/tutorials/oop/abstraction/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/oop/abstraction/)) (New keywords: `interface`, `abstract`, and `implements`) 
