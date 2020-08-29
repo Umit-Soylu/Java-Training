@@ -8,7 +8,8 @@ public class Book {
     private String name;
 
     // Author of the book
-    private final String author;
+    // Final variables should be initialized either in every constructor or in declaration
+    private final String author; // Here author is initialized in every constructor.
 
     // Reviewer of the book
     private String reviewer;
