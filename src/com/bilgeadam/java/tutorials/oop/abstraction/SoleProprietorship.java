@@ -13,7 +13,7 @@ public class SoleProprietorship extends GenericCompany{
      * @param employeeSize Expected size of the company
      */
     public SoleProprietorship(String owner, String name, int employeeSize) {
-        super(owner, name, 30);
+        super(owner, name, employeeSize);
         this.isCompanyActive = true;
     }
 

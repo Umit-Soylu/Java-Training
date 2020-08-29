@@ -27,7 +27,7 @@ public abstract class GenericCompany implements Company {
     public GenericCompany(String owner, String name, int totalNbOfEmployeesNeeded) {
         this.owner = owner;
         this.name = name;
-        this.currentNbOfEmployees = 1;
+        this.currentNbOfEmployees = 1; // This is the owner of the company
         this.totalNbOfEmployees = totalNbOfEmployeesNeeded;
         this.expense = 0F;
         this.income = 0F;
