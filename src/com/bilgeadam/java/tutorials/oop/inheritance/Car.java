@@ -2,10 +2,12 @@ package com.bilgeadam.java.tutorials.oop.inheritance;
 
 /**
  * This class uses vehicle properties and only implements methods specific to car type.
+ * Car 'is a' Vehicle relation established.
  */
 public class Car extends Vehicle {
 
     private short nbOfPassengers, nbOfDoors;
+
     private static final String plateRegex = "\\d+\\w+\\d+";
 
     // Diesel, Electric, Gasoline
@@ -13,14 +15,16 @@ public class Car extends Vehicle {
 
     /**
      * A car object generated from vehicle
-     * @param chassisNo chassis of the car acquired from Vehicle class.
-     * @param environment environment of the car (sea, air, etc.) acquired from Vehicle class.
+     * @param chassisNo      chassis of the car acquired from Vehicle class.
+     * @param environment    environment of the car (sea, air, etc.) acquired from Vehicle class.
      * @param nbOfPassengers number of passengers for the car.
-     * @param nbOfDoors number of doors of the car.
-     * @param engineType type of engine (Diesel, Electric, Gasoline) of the car.
+     * @param nbOfDoors      number of doors of the car.
+     * @param engineType     type of engine (Diesel, Electric, Gasoline) of the car.
      */
     public Car(String chassisNo, String environment, short nbOfPassengers, short nbOfDoors, String engineType) {
+        // First call extended class constructor.
         super(chassisNo, environment);
+
         this.setNbOfPassengers(nbOfPassengers);
         this.setNbOfDoors(nbOfDoors);
         this.engineType = engineType;
