@@ -55,4 +55,12 @@ class CommercialCarTest {
     void testCommercialCarMethods() {
         assertEquals(company, testCar.getCompany());
     }
+
+    /**
+     * Verify the given type is child of a Car class
+     */
+    @Test
+    void testInstanceOf() {
+        assertEquals(true, testCar instanceof Car);
+    }
 }
