@@ -1,10 +1,10 @@
 package com.bilgeadam.java.tutorials.oop.aggregation;
 
 public class Employee {
-
+    // Name of the employee
     String name;
 
-    // This will define 'has a' relationship between Employee & Address.
+    // This defines 'has a' relationship between Employee & Address.
     Address address;
 
     /**
@@ -31,6 +31,10 @@ public class Employee {
     }
 
 
+    /**
+     * Details of the address of the employee
+     * @return the address
+     */
     public String getAddress() {
         return  "Country:" + address.country +
                 "City: " + address.city +
