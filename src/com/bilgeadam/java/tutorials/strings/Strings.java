@@ -16,7 +16,7 @@ public class Strings {
 
     /**
      * This appends a new string to current string
-     * @return
+     * @return appended String
      */
     public String appendStrings(String value){
         return name.concat(" " + value);
@@ -26,7 +26,7 @@ public class Strings {
         return name.replace(oldChar, newChar);
     }
 
-    public String replaceFirstChar(String oldChar, String newChar){
+    public String replaceFirstRegex(String oldChar, String newChar){
         return name.replaceFirst(oldChar, newChar);
     }
 
@@ -38,8 +38,25 @@ public class Strings {
         return name;
     }
 
+    /**
+     * This splints the string for each ' '
+     * @return Only one string
+     */
+    public String splitString(){
+        name = "Java Class YJS 4436";
+        for (String s: name.split(" ")) {
+            System.out.println("Split String = " + s);
+        }
 
+        return name.split(" ", 2)[0];
+    }
+
+    /**
+     * This uses StringBuilder class
+     */
     public void buildingStrings(){
+        StringBuilder builder = new StringBuilder();
+        builder.append(name);
 
     }
 }
