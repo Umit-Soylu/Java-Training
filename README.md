@@ -28,3 +28,6 @@ Following issues are introduced step by step at each commit. Please use the link
   - Inheritence concepts introduced in the [Inheritance Package](/com/bilgeadam/java/tutorials/enumeration/inheritance/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/oop/inheritance/)) (New keywords: `extends`, and `instanceof`)
   - Polymorphism concepts introduced in the [Polymorphism Package](/com/bilgeadam/java/tutorials/enumeration/inheritance/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/oop/inheritance/)) (New keywords: `@Override`, `final`, `this`, and `super`) 
   - Abstraction concepts introduced in the [Abstraction Package](/com/bilgeadam/java/tutorials/enumeration/abstraction/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/oop/abstraction/)) (New keywords: `interface`, `abstract`, and `implements`) 
+
+## Common Java Classes
+* [Enumeration](https://github.com/Umit-Soylu/Java-Training/tree/Enumeration) class is introduced with example cases. (New keywords: `enum`, and `ordinal`)
