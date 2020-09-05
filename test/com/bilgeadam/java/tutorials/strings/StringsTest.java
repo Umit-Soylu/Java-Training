@@ -20,7 +20,7 @@ class StringsTest {
     }
 
     @Test
-    void stringValues() {
+    void testStrings() {
         // 'Java' string is already in JVM, so it will be assigned to 'oldString' parameter.
         String oldString = "Java", otherOldString = "Java";
         assertSame(oldString, otherOldString);
@@ -37,30 +37,36 @@ class StringsTest {
     }
 
     @Test
-    void appendStrings() {
+    void testAppendStrings() {
         String testValue = "YJS4436";
         assertEquals("New Java " + testValue, testString.appendStrings(testValue));
     }
 
     @Test
-    void replaceChars() {
+    void testReplaceChars() {
         char oldVal = 'a', newVal = 'A';
-
         assertEquals("New JAvA", testString.replaceChars(oldVal, newVal));
     }
 
     @Test
-    void replaceFirstChar() {
+    void testReplaceFirstRegex() {
         String oldVal = "a", newVal = "A";
 
-        assertEquals("New JAva", testString.replaceFirstChar(oldVal, newVal));
+        assertEquals("New JAva", testString.replaceFirstRegex(oldVal, newVal));
     }
 
     @Test
-    void substring() {
+    void testSubstring() {
+        int startIndex = 11;
+        assertEquals("YJS 4436", testString.substring(startIndex));
     }
 
     @Test
-    void buildingStrings() {
+    void testBuildingStrings() {
+    }
+
+    @Test
+    void testSplitString() {
+        assertEquals("Java", testString.splitString());
     }
 }
