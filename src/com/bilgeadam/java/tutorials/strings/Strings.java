@@ -4,33 +4,30 @@ public class Strings {
     private String name = "Java";
 
     /**
-     * This will create 2 different String variables in the backend
+     * The constructor will create 2 different Strings for the String Pool
      */
-    public void immutableStrings(){
-        name = "Java";
-        name = "New Java";
+    public Strings(){
+        name = "New Java"; // 'New Java' is stored as a string in the background
 
         String test;
-        test = "Java";
+        test = "Java"; // 'Java' string, which is stored in the background for the variable 'name' in the first place,
+        // is associated with 'test' variable.
     }
 
-
-    public String appendStrings(){
-        name = name.concat(" Class");
-
-        return name;
+    /**
+     * This appends a new string to current string
+     * @return
+     */
+    public String appendStrings(String value){
+        return name.concat(" " + value);
     }
 
     public String replaceChars(char oldChar, char newChar){
-        name = name.replace(oldChar, newChar);
-        System.out.println("name = " + name);
-        return name;
+        return name.replace(oldChar, newChar);
     }
 
-     public String replaceFirstChar(String oldChar, String newChar){
-        name = name.replaceFirst(oldChar, newChar);
-        System.out.println("name = " + name);
-        return name;
+    public String replaceFirstChar(String oldChar, String newChar){
+        return name.replaceFirst(oldChar, newChar);
     }
 
     public String substring(int start){
