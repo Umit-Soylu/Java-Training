@@ -7,7 +7,7 @@ package com.bilgeadam.java.tutorials.oop.polymorphism;
  */
 public final class Novel extends Book {
 
-    // Macera, Bilimkurgu, Romantik
+    // Adventure, Science Fiction, Romantic
     String type, secondType;
 
 
@@ -62,7 +62,7 @@ public final class Novel extends Book {
 
     /**
      * This is method overloading example
-     * @param type Type of the novel - 'Macera', 'Bilimkurgu', 'Romantik'
+     * @param type Type of the novel - 'Adventure', 'Science Fiction', 'Romantic'
      */
     public void setType(String type) {
         if (checkNovelType(type))
@@ -73,7 +73,7 @@ public final class Novel extends Book {
 
     /**
      * This is method overloading example
-     * @param type              Additional book type to be added - 'Macera', 'Bilimkurgu', 'Romantik'
+     * @param type              Additional book type to be added - 'Adventure', 'Science Fiction', 'Romantic'
      * @param isAdditionalType  Should be true
      */
     public void setType(String type, boolean isAdditionalType){
@@ -101,21 +101,20 @@ public final class Novel extends Book {
      * @return 'True' if novel type is valid; 'False' otherwise.
      */
     private boolean checkNovelType(String type){
-        return type.equalsIgnoreCase("Macera") ||
-                type.equalsIgnoreCase("Bilimkurgu") ||
-                type.equalsIgnoreCase("Romantik");
+        return type.equalsIgnoreCase("Adventure") ||
+                type.equalsIgnoreCase("Science Fiction") ||
+                type.equalsIgnoreCase("Romantic");
     }
 
-    /**
-     * This method cannot be Override.
-     *
-     * @return Current state of the book.
-     */
-    /**
-    @Override
-    public String getState() {
-        return super.getState() + "-Novel";
-    }
-    */
+//    /**
+//     * This method cannot be Override.
+//     *
+//     * @return Current state of the book.
+//     */
+//    @Override
+//    public String getState() {
+//        return super.getState() + "-Novel";
+//    }
+//
 
 }
