@@ -1,4 +1,4 @@
-package com.bilgeadam.java.tutorials.oop.polymorphism;
+package com.bilgeadam.java.tutorials.enumeration;
 
 /**
  * A book entity that is or will be published.
@@ -11,14 +11,8 @@ public class Book {
     // Final variables should be initialized either in every constructor or in declaration
     private final String author; // Here author is initialized in every constructor.
 
-    // Reviewer of the book
-    private String reviewer;
-
-    // Number of pages.
-    private int nbOfPages;
-
     // State of the book
-    private String state; // Preparing, Reviewing, Published
+    private BookStages state; // Preparing, Reviewing, Published
 
     /**
      * Initial book preparation - state is always 'Preparing'.
@@ -28,7 +22,7 @@ public class Book {
     public Book(String name, String author) {
         this.name = name;
         this.author = author;
-        setState("Preparing");
+        setState(BookStages.Preparing);
     }
 
 
@@ -63,55 +57,30 @@ public class Book {
     }
 
     /**
-     *
-     * @return name of the reviewer
-     */
-    public String getReviewer() {
-        return reviewer;
-    }
-
-    /**
-     * Set the reviewer according to criteria based on book type
-     * @param reviewer  Reviewer of the Book
-     */
-    protected void setReviewer(String reviewer) {
-        // TODO: Only allow reviewer based on book type.
-        this.reviewer = reviewer;
-    }
-
-    /**
-     *
-     * @return Number of pages
-     */
-    public int getNbOfPages() {
-        return nbOfPages;
-    }
-
-    /**
-     * Set number of pages according to criteria based on book type
-     * @param nbOfPages The number of pages
-     */
-    protected void setNbOfPages(int nbOfPages) {
-        // TODO: Set according to type.
-        this.nbOfPages = nbOfPages;
-    }
-
-    /**
      * This method cannot be Override.
      * @return Current state of the book.
      */
     public final String getState() {
-        return state;
+       return this.state.toString();
+    }
+
+
+    /**
+     * Set state of the book using ENUM parameters
+     *
+     * @param state Set state of the book - 'Preparing', 'Reviewing', 'Published'
+     */
+    protected void setState(BookStages state) {
+        this.state = state;
     }
 
     /**
-     * Set state of the book
+     * Set state of the book using String as input and converting to ENUM value
+     *
      * @param state Set state of the book - 'Preparing', 'Reviewing', 'Published'
      */
     protected void setState(String state) {
-        if (state.equals("Preparing") || state.equals("Reviewing") || state.equals("Published"))
-            this.state = state;
-        else
-            throw new IllegalArgumentException("State is not 'Preparing' or 'Reviewing' or 'Published'");
+        this.state = BookStages.valueOf(state);
     }
+
 }
