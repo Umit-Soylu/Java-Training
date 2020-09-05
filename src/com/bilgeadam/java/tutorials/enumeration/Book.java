@@ -66,7 +66,8 @@ public class Book {
 
 
     /**
-     * Set state of the book
+     * Set state of the book using ENUM parameters
+     *
      * @param state Set state of the book - 'Preparing', 'Reviewing', 'Published'
      */
     protected void setState(BookStages state) {
@@ -74,20 +75,12 @@ public class Book {
     }
 
     /**
-     * Set state of the book
+     * Set state of the book using String as input and converting to ENUM value
+     *
      * @param state Set state of the book - 'Preparing', 'Reviewing', 'Published'
      */
     protected void setState(String state) {
         this.state = BookStages.valueOf(state);
     }
-
-    /**
-     * This method cannot be Override.
-     * @return Current state of the book.
-
-    public final BookStages getState() {
-        return state;
-    }*/
-
 
 }
