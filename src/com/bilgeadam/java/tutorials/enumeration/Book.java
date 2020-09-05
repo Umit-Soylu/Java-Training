@@ -1,4 +1,4 @@
-package com.bilgeadam.java.tutorials.oop.polymorphism;
+package com.bilgeadam.java.tutorials.enumeration;
 
 /**
  * A book entity that is or will be published.
@@ -18,7 +18,7 @@ public class Book {
     private int nbOfPages;
 
     // State of the book
-    private String state; // Preparing, Reviewing, Published
+    private BookStages state; // Preparing, Reviewing, Published
 
     /**
      * Initial book preparation - state is always 'Preparing'.
@@ -28,7 +28,7 @@ public class Book {
     public Book(String name, String author) {
         this.name = name;
         this.author = author;
-        setState("Preparing");
+        setState(BookStages.Preparing);
     }
 
 
@@ -101,7 +101,16 @@ public class Book {
      * @return Current state of the book.
      */
     public final String getState() {
-        return state;
+       return this.state.toString();
+    }
+
+
+    /**
+     * Set state of the book
+     * @param state Set state of the book - 'Preparing', 'Reviewing', 'Published'
+     */
+    protected void setState(BookStages state) {
+        this.state = state;
     }
 
     /**
@@ -109,9 +118,16 @@ public class Book {
      * @param state Set state of the book - 'Preparing', 'Reviewing', 'Published'
      */
     protected void setState(String state) {
-        if (state.equals("Preparing") || state.equals("Reviewing") || state.equals("Published"))
-            this.state = state;
-        else
-            throw new IllegalArgumentException("State is not 'Preparing' or 'Reviewing' or 'Published'");
+        this.state = BookStages.valueOf(state);
     }
+
+    /**
+     * This method cannot be Override.
+     * @return Current state of the book.
+
+    public final BookStages getState() {
+        return state;
+    }*/
+
+
 }
