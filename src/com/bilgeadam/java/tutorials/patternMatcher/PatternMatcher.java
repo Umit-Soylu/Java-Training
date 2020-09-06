@@ -78,12 +78,8 @@ public class PatternMatcher {
 
         // print out match
         while (m.find()) {
-            //System.out.println("m.group(0) = " + m.group(0) + " index: " + m.start() + " to " + m.end());
-            System.out.println("m.group(1) = " + m.group(1));
             this.key = m.group(1).toUpperCase();
-            System.out.println("m.group(2) = " + m.group(2));
             this.keyValue = Integer.parseInt(m.group(2));
-
         }
 
         return m.matches();
