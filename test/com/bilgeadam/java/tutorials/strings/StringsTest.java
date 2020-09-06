@@ -39,7 +39,7 @@ class StringsTest {
     @Test
     void testAppendStrings() {
         String testValue = "YJS4436";
-        assertEquals("New Java " + testValue, testString.appendStrings(testValue));
+        assertEquals("New Java YJS4436", testString.appendStrings(testValue));
     }
 
     @Test
@@ -62,11 +62,45 @@ class StringsTest {
     }
 
     @Test
-    void testBuildingStrings() {
-    }
+    void testLastIndex() {
+        char c = 'a';
 
+        assertEquals(7, testString.lastIndex(c));
+    }
+    @Test
+    void testIndexOf() {
+        char c = 'a';
+
+        assertEquals(14, testString.indexOf(c));
+    }
     @Test
     void testSplitString() {
         assertEquals("Java", testString.splitString());
+    }
+
+    @Test
+    void testBuildingStrings() {
+        assertEquals("Java YJS 4436 training with 0.85",
+                testString.buildingStrings("YJS", 4436, "training", 0.85F));
+    }
+
+    @Test
+    void testReverseNames(){
+        String className = "Java", classId = "YJS 4436", studentOne = "Umit", studentTwo = "Egemen";
+
+        // String array for students
+        String[] students = new String[2];
+        students[0] = studentOne;
+        students[1] = studentTwo;
+
+        assertEquals("Java YJS 4436 Egemen Umit", testString.reverseNames(className, classId, students));
+    }
+    
+    @Test
+    void testCapacity(){
+        String initial = "Java YSJ 4436 class", appended = "Test Values Test Values Test Values";
+        int trimValue = 19;
+
+        assertEquals(initial, testString.capacity(initial, appended, trimValue));
     }
 }
