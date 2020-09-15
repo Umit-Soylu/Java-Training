@@ -36,7 +36,6 @@ class PatternMatcherTest {
         assertEquals("Student", testPatternMatcher.getResults().get(0));
         assertEquals("Umit", testPatternMatcher.getResults().get(1));
         assertEquals("asd", testPatternMatcher.getResults().get(2));
-
     }
 
     @Test
@@ -46,7 +45,5 @@ class PatternMatcherTest {
         assertEquals(true, testPatternMatcher.isValidString(inputOne));
         assertEquals("CAR", testPatternMatcher.getKey());
         assertEquals(5, testPatternMatcher.getKeyValue());
-
-        //assertEquals(false, testPatternMatcher.isValidString(inputTwo));
     }
 }

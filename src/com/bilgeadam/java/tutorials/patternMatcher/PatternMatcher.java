@@ -11,9 +11,11 @@ public class PatternMatcher {
 
     private Integer keyValue;
 
+    // This regex will catch characters consists of 1 or more in size
     private static final String regexForWords = "\\w+"; // [a..zA..Z]
 
-    // Regex for catching String_Id
+    // This regex will catch 2 pairs, denoted as '(' and ')' where first pair consists of characters and
+    // second pair consists of digits divided by '_'.
     private static final String regexForObjectId = "(\\w+)_(\\d+)";
     // Same Regex as above
     private static final String regexForObjectId2 = "([a-zA-Z]+)_([0-9]+)";
@@ -38,7 +40,7 @@ public class PatternMatcher {
 
     /**
      * Divide the String as Key and Value using ':'
-     * @param input String (Ex: 'Student : Umit'
+     * @param input String (Ex: 'Student : Umit')
      */
     public void keyValueDivider(String input){
         int dividerIndex = input.indexOf(':');
@@ -66,7 +68,7 @@ public class PatternMatcher {
     }
 
     /**
-     * This method will verify given string satisfies <Type>-<Counter>
+     * This method will verify given string satisfies 'Characters'_'Number'
      *
      * @param input String
      * @return      result as boolean
@@ -76,7 +78,9 @@ public class PatternMatcher {
         Pattern p = Pattern.compile(regexForObjectId2);
         Matcher m = p.matcher(input);
 
-        // print out match
+        // Print out match
+        // Be mindful that each group is generated according to '(' and ')' in regex
+        // Also group(0) is reserved for all pattern
         while (m.find()) {
             this.key = m.group(1).toUpperCase();
             this.keyValue = Integer.parseInt(m.group(2));
