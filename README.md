@@ -27,3 +27,4 @@ Following issues are introduced step by step at each commit. Please use the link
 ## Common Java Classes
 * [Enumeration](https://github.com/Umit-Soylu/Java-Training/tree/Enumeration) class is introduced with example cases. (New keywords: `enum`, and `ordinal`)
 * [String](https://github.com/Umit-Soylu/Java-Training/tree/Strings) class is introduced with example cases. (New keywords: `String`, `StringBuilder` and `StringBuffer`)
+* [Pattern and Matcher](https://github.com/Umit-Soylu/Java-Training/tree/PatternMatcher) class is introduced with example cases. (New keywords: `Pattern`, `Matcher`, `group`, `compile` and `regex`)
