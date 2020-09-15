@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Calendars {
-    private static final String calendarFormatString = "yyyy/MMMMMM/dd hh:mm:ss:SSSS";
+    private static final String calendarFormatString = "yyyy/MMMM/dd hh:mm:ss:SSSS";
     private final SimpleDateFormat simpleDateFormat;
     private final GregorianCalendar calendar;
 
