@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test;
 
 class MultiDimensionArrayTest {
     private MultiDimensionArray testClass;
-    private final int dimOne = 2;
-    private final int dimTwo = 3;
-    private final int dimThree = 4;
 
     @BeforeEach
     void setUp() {
+        int dimOne = 2;
+        int dimTwo = 3;
+        int dimThree = 4;
         testClass = new MultiDimensionArray(dimOne, dimTwo, dimThree);
     }
 
@@ -28,6 +28,7 @@ class MultiDimensionArrayTest {
         testClass.insertElement(0,2,2,'D');
         testClass.insertElement(1,1,0,'E');
 
-        System.out.println("testClass.getCharArray() = " + testClass);
+        // This will call toString method of testClass which is overridden
+        System.out.println(testClass);
     }
 }

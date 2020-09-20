@@ -20,7 +20,7 @@ class QueuesTest {
     @Test
     void addElement() {
         // Arrays can be created without size only in the initialization.
-        String[] elements = new String[]{"A", "Z", "S", "A", "Z", "S","A", "Z", "S","A", "Z", "S","A", "Z", "S","A", "Z", "S","A", "Z", "S","A", "Z", "S"};
+        String[] elements = new String[]{"A", "Z", "S", "A", "Z", "S"};
 
         for (String s : elements) {
             testClass.addElement(s);

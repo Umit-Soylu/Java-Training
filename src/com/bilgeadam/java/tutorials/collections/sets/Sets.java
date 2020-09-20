@@ -1,13 +1,13 @@
 package com.bilgeadam.java.tutorials.collections.sets;
 
-import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 public class Sets {
-    Set<String> treeSet;
-    Set<String> hashSet;
+    TreeSet<String> treeSet;
+    HashSet<String> hashSet;
 
     public Sets() {
         hashSet = new HashSet<>();
@@ -24,15 +24,15 @@ public class Sets {
     }
 
     /**
-     * Intersects current sets with the given {@param input}
+     * Intersects current sets with the given {@code input} and modify lists to preserve only with intersecting elements
      * @param input The other set to be intersected
      */
-    public void findIntersection(Collection input){
+    public void findIntersection(List<String> input){
          hashSet.retainAll(input);
          treeSet.retainAll(input);
     }
     /**
-     * Add given element to both Sets
+     * Remove given {@code element} from both Sets
      * @param element New element
      */
     public void removeElements(String element){
@@ -42,7 +42,7 @@ public class Sets {
 
     /**
      *
-     * @return Array of my Set
+     * @return Array representation the HashSet
      */
     public Object[] convertArray(){
         return hashSet.toArray();

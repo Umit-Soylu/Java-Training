@@ -58,7 +58,7 @@ class ArraysAndListsTest {
 
         testClass.removeArrayList(3);
 
-        for (Object i : testClass.getArrayList()) {
+        for (Integer i : testClass.getArrayList()) {
             System.out.println("i = " + i);
         }
     }
@@ -66,19 +66,23 @@ class ArraysAndListsTest {
     @Test
     void testRemoveElements(){
         Date startTime, endTime;
-        int counter = 10_000;
-        Integer[] listElements = new Integer[counter], searchElements = new Integer[counter];
+
+        int counter = 100_000;
+
+        Integer[] listElements = new Integer[counter],
+                searchElements = new Integer[counter];
 
         // Create random element list
         for (int i = 0; i < counter; i++)
             listElements[i] = (int) (Math.random() * Integer.MAX_VALUE);
 
+        // Add all element of the random list both ArrayList & LinkedList
         for (int i = 0; i < counter; i++) {
             testClass.addArrayListElement(listElements[i]);
             testClass.addLinkedListElement(listElements[i]);
         }
 
-        // Create random search element list
+        // Create random search element list to be removed
         for (int i = 0; i < counter; i++)
             searchElements[i] = (int) (Math.random() * Integer.MAX_VALUE);
 
@@ -103,7 +107,9 @@ class ArraysAndListsTest {
     @Test
     void testRemoveIndex(){
         Date startTime, endTime;
+
         int counter = 100_000;
+
         Integer[] listElements = new Integer[counter];
 
         // Create random element list

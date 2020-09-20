@@ -43,18 +43,6 @@ class SetsTest {
         printInfo();
     }
 
-    private void printInfo(){
-        for (String s : testClass.getHashSet()) {
-            System.out.println("Hash Set = " + s);
-        }
-
-        for (String s : testClass.getTreeSet()) {
-            System.out.println("Tree Set = " + s);
-        }
-
-        testClass.printInfo();
-    }
-
     @Test
     void convertArray() {
         String[] elements = new String[]{"Aaaa", "Baaa", "Abaa", "Aaaa"};
@@ -63,9 +51,9 @@ class SetsTest {
             testClass.addElements(s);
         }
 
-        Object[] testArray;
-        testArray = testClass.convertArray();
-        testArray.clone();
+        Object[] testArray = testClass.convertArray();
+        testArray.clone(); // An array class only has length & clone 
+        System.out.println("Array class with length = " + testArray.length);
     }
 
     @Test
@@ -80,5 +68,22 @@ class SetsTest {
         testClass.findIntersection(Arrays.asList(collections));
 
         printInfo();
+    }
+
+    /**
+     * Following method prints all values of both lists.
+     */
+    private void printInfo(){
+        System.out.println("Hash Set Elements");
+        for (String s : testClass.getHashSet()) {
+            System.out.println(s);
+        }
+
+        System.out.println("Tree Set Elements");
+        for (String s : testClass.getTreeSet()) {
+            System.out.println(s);
+        }
+
+        testClass.printInfo();
     }
 }
