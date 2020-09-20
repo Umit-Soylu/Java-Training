@@ -26,3 +26,9 @@ Following issues are introduced step by step at each commit. Please use the link
   - Abstraction concepts introduced in the [Abstraction Package](/com/bilgeadam/java/tutorials/enumeration/abstraction/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/oop/abstraction/)) (New keywords: `interface`, `abstract`, and `implements`) 
 ## Common Java Classes
 * [Enumeration](https://github.com/Umit-Soylu/Java-Training/tree/Enumeration) class is introduced with example cases. (New keywords: `enum`, and `ordinal`)
+## Advanced Concepts of Java
+* [Collections](https://github.com/Umit-Soylu/Java-Training/tree/Collections) is introduced with its application classes. 
+  - List concept and its application classes are in the [Arrays & Lists Package](/src/com/bilgeadam/java/tutorials/collections/arrays_lists/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/collections/arrays_lists/)) (New keywords: `Array`, `List`, `LinkedList` and `ArrayList`)
+  - Queue concept and its application classes are in the [Queues Package](/src/com/bilgeadam/java/tutorials/collections/queues/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/collections/queues/)) (New keywords: `Queue`, `ArrayQueue`, `PriorityQueue` and `Stack`)
+  - Set concept and its application classes are in the [Sets Package](/src/com/bilgeadam/java/tutorials/collections/sets/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/collections/sets/)) (New keywords: `Set`, `HashSet`, and `TreeSet`)
+
