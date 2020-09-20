@@ -89,18 +89,13 @@ public class MathematicalExpressionParser {
      * @return the result
      */
     private float parseSimpleExpression(float operandOne, float operandTwo, char operator){
-        switch (operator){
-            case '+':
-                return operandOne + operandTwo;
-            case '-':
-                return operandOne - operandTwo;
-            case '*':
-                return operandOne * operandTwo;
-            case '/':
-                return operandOne / operandTwo;
-            default:
-                throw new IllegalArgumentException("Unknown symbol: " + operator);
-        }
+        return switch (operator) {
+            case '+' -> operandOne + operandTwo;
+            case '-' -> operandOne - operandTwo;
+            case '*' -> operandOne * operandTwo;
+            case '/' -> operandOne / operandTwo;
+            default -> throw new IllegalArgumentException("Unknown symbol: " + operator);
+        };
     }
     /**
      * This method verifies given string is a {@link Double} number or not
