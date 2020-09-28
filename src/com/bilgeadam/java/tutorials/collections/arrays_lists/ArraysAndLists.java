@@ -2,30 +2,29 @@ package com.bilgeadam.java.tutorials.collections.arrays_lists;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class ArraysAndLists {
     // Arrays are fixed size.
     private final Integer[] arrays;
 
     // Both ArrayList and LinkedList are extended from List Interface
-    private final List arrayList;
-    private final List linkedList;
+    private final ArrayList<Integer> arrayList;
+    private final LinkedList<Integer> linkedList;
 
     /**
      * Initializes Array, ArrayList and LinkedList
      * @param length for the array
      */
     public ArraysAndLists(int length) {
-        arrays = new Integer[length];
-        arrayList = new ArrayList();     // 10 element reserved
-        linkedList = new LinkedList();   // 0 element reserved
+        arrays = new Integer[length];      // Length size is reserved (fixed size)
+        arrayList = new ArrayList<>();     // 10 element reserved
+        linkedList = new LinkedList<>();   // 0 element reserved
     }
 
     /**
      * Adds new element to the lists.
-     * @param element  Integer to be added.
-     * @param index    Location for Array, List will append to the end.
+     * @param element Integer to be added.
+     * @param index   Location for Array, List will append to the end.
      */
     public void addArrayElement(int element, int index){
         arrays[index] = element;
@@ -33,14 +32,14 @@ public class ArraysAndLists {
 
     /**
      * Adds new element to the lists.
-     * @param element       Integer to be added.
+     * @param element Integer to be added.
      */
     public void addLinkedListElement(int element){
         linkedList.add(element);
     }
     /**
      * Adds new element to the lists.
-     * @param element       Integer to be added.
+     * @param element Integer to be added.
      */
     public void addArrayListElement(int element){
         arrayList.add(element);
@@ -68,7 +67,7 @@ public class ArraysAndLists {
      * @param index  to be removed
      * @return Result
      */
-    public Object removeArrayListIndex(int index){
+    public Integer removeArrayListIndex(int index){
         return arrayList.remove(index);
     }
 
@@ -77,18 +76,31 @@ public class ArraysAndLists {
      * @param index  to be removed
      * @return Result
      */
-    public Object removeLinkListIndex(int index){
+    public Integer removeLinkListIndex(int index){
         return linkedList.remove(index);
     }
+
+    /**
+     * Getter method for array
+     * @return Integer array
+     */
     public Integer[] getArrays() {
         return arrays;
     }
 
-    public List getArrayList() {
+    /**
+     * Getter method for ArrayList
+     * @return ArrayList
+     */
+    public ArrayList<Integer> getArrayList() {
         return arrayList;
     }
 
-    public List getLinkedList() {
+    /**
+     * Getter method for LinkedList
+     * @return LinkedList
+     */
+    public LinkedList<Integer> getLinkedList() {
         return linkedList;
     }
 }
