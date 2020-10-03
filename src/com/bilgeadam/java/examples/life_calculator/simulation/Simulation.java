@@ -1,5 +1,7 @@
 package com.bilgeadam.java.examples.life_calculator.simulation;
 
+import com.bilgeadam.java.examples.life_calculator.creatures.FoodType;
+
 import java.util.Arrays;
 import java.util.Random;
 
@@ -70,8 +72,8 @@ public class Simulation implements Environment {
         int x = (int) Math.floor(Math.random() * (simulationEnvironment.length - 1)),
                 y = (int) Math.floor(Math.random() * (simulationEnvironment[0].length - 1));
 
-        if (!(simulationEnvironment[x][y]).equalsIgnoreCase(food)){
-            simulationEnvironment[x][y] = food;
+        if(Arrays.stream(FoodType.values()).noneMatch((f) -> f.toString().equals(simulationEnvironment[x][y]))){
+            simulationEnvironment[x][y] = FoodType.values()[(int) Math.round(Math.random() * (FoodType.values().length - 1))].toString();
             return true;
         } else
             return false;

@@ -9,15 +9,14 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 class AntTest {
     private Ant antOne, antTwo;
-    private final short lifeExpectancy = 4;
     private final short birthday = 1;
     private final int x = 2;
     private final int y = 3;
 
     @BeforeEach
     void setUp() {
-        antOne = new Ant(lifeExpectancy, birthday, x, y);
-        antTwo = new Ant(lifeExpectancy, birthday, x, y);
+        antOne = new Ant(birthday, x, y);
+        antTwo = new Ant(birthday, x, y);
     }
 
     @AfterEach
@@ -33,4 +32,5 @@ class AntTest {
         else
             assertNull(antOne.copulate(antTwo));
     }
+
 }

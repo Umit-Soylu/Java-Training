@@ -10,7 +10,7 @@ public interface Organism {
     /**
      * This method allow organism to consume food
      */
-    void eat(String foodType, Number currentDay);
+    void eat(FoodType food, Number currentDay);
 
     /**
      * This method allow organism to move into another location

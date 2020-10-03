@@ -1,12 +1,12 @@
 package com.bilgeadam.java.examples.life_calculator.creatures;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Ant extends Creature{
     private static final int maxChildrenCount = 4;
+    private static final short lifeExpectancy = 5;
 
-    public Ant(short lifeExpectancy, short birthday, int x, int y) {
+    public Ant(short birthday, int x, int y) {
         super(lifeExpectancy, birthday, x, y);
     }
 
@@ -17,14 +17,14 @@ public class Ant extends Creature{
      * @return List of children
      */
     @Override
-    protected List<Ant> generateChild(int size) {
+    protected ArrayList<Ant> generateChild(int size) {
         if (size == 0)
             return null;
         else {
-            List<Ant> children = new ArrayList<>(size);
+            ArrayList<Ant> children = new ArrayList<>(size);
 
             while (size > 0) {
-                children.add(new Ant((short) 10, (short) 1, getX(), getY()));
+                children.add(new Ant((short) 1, getX(), getY()));
                 size--;
             }
 
@@ -33,7 +33,7 @@ public class Ant extends Creature{
     }
 
     /**
-     * @return The maximum number of children can ber produced only in one mating
+     * @return The maximum number of children can be produced only in one mating
      */
     @Override
     protected int getMaximumChildSize() {

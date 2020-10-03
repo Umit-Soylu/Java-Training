@@ -168,10 +168,9 @@ public abstract class Creature implements Organism{
      * This method allow organism to consume food
      */
     @Override
-    public void eat(String foodType, Number currentDay) {
-        if (foodType != null && currentDay != null)
+    public void eat(FoodType food, Number currentDay) {
+        if (food != null && currentDay != null)
             setLastMealDay((Integer) currentDay);
-
     }
 
     /**
@@ -191,7 +190,11 @@ public abstract class Creature implements Organism{
      */
     @Override
     public List<? extends Creature> copulate(Object o) {
-        int childSize = ((o instanceof Creature) && isCompatible((Creature) o)) ? (int) Math.round(Math.random() * getMaximumChildSize()) : 0;
+        int childSize = (o instanceof Creature &&
+                        isCompatible((Creature) o) &&
+                        ((Creature) o).getX().equals(this.getX()) &&
+                        ((Creature) o).getY().equals(this.getY())) ?
+                (int) Math.round(Math.random() * getMaximumChildSize()) : 0;
 
         return generateChild(childSize);
     }
