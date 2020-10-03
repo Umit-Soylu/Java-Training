@@ -13,7 +13,7 @@ public class Simulation implements Environment {
     private int numberOfEntities;
 
     // Ratio of the foods in the environment
-    private final float foodRatio;
+    private float foodRatio;
 
     /**
      * Constructor
@@ -27,7 +27,7 @@ public class Simulation implements Environment {
 
         setNumberOfEntities(numberOfEntities);
 
-        this.foodRatio = foodRatio;
+        setFoodRatio(foodRatio);
 
         initializeFoods();
     }
@@ -80,15 +80,15 @@ public class Simulation implements Environment {
     /**
      * This method consumes the food in the given location.
      *
-     * @param latitude  Latitude of the food
-     * @param longitude Longitude of the food
+     * @param width  Latitude of the food
+     * @param height Longitude of the food
      *
      * @throws IllegalArgumentException  if no food exist in given location
      * @throws IndexOutOfBoundsException if given location does not reside in the environment borders
      */
     @Override
-    public void consumeFood(Number latitude, Number longitude) throws IllegalArgumentException, IndexOutOfBoundsException {
-        int x = (int) latitude, y = (int) longitude;
+    public void consumeFood(Number width, Number height) throws IllegalArgumentException, IndexOutOfBoundsException {
+        int x = (int) width, y = (int) height;
 
         // Check if dimensions are within the simulation borders
         if (x >= simulationEnvironment.length || y >= simulationEnvironment[0].length)
@@ -116,6 +116,20 @@ public class Simulation implements Environment {
         this.numberOfEntities = numberOfEntities;
     }
 
+    /**
+     * This method accepts food ration in between 0.0 .. 1.0
+     *
+     * @param foodRatio The ratio of food in the environment
+     */
+    private void setFoodRatio(float foodRatio){
+        if (foodRatio < 0.0)
+            throw new IllegalArgumentException("Food ratio cannot be negative");
+
+        if (foodRatio > 1.0)
+            throw new IllegalArgumentException("Food ratio cannot exceed 1.0");
+
+        this.foodRatio = foodRatio;
+    }
     /**
      * This method prints all the entities in the simulation
      */
