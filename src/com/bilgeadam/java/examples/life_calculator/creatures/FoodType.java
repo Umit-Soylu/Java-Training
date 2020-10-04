@@ -42,7 +42,7 @@ public enum FoodType {
         // Append spaces if current string value is less than desired value
         if (super.toString().length() < maxStringLength) {
             StringBuilder s =  new StringBuilder(super.toString());
-            while (s.length() < 5)
+            while (s.length() < maxStringLength)
                 s.append(" ");
             return s.toString();
         } else // Concat exceeding values
