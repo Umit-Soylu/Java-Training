@@ -1,13 +1,11 @@
 package com.bilgeadam.java.examples.life_calculator.simulation;
 
+import com.bilgeadam.java.examples.life_calculator.creatures.Ant;
 import com.bilgeadam.java.examples.life_calculator.creatures.FoodType;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 public class Simulation implements Environment {
-    private static final String food = "Food ";
-
     // An array to store simulation environment values.
     private String[][] simulationEnvironment;
 
@@ -17,6 +15,15 @@ public class Simulation implements Environment {
     // Ratio of the foods in the environment
     private float foodRatio;
 
+    // Stores the creatures in the environment
+    private LinkedList<Ant> creatures;
+
+    // Stores the current turn.
+    private short turn;
+
+    // A display value if nothing exists
+    private static final String empty = "Barren    ";
+
     /**
      * Constructor
      * @param length           The max length of the simulation
@@ -25,6 +32,8 @@ public class Simulation implements Environment {
      * @param foodRatio        The food ratio in the simulation
      */
     public Simulation(int length, int width, int numberOfEntities, float foodRatio){
+        setTurn((short) 0);
+
         initializeEnvironment(length, width);
 
         setNumberOfEntities(numberOfEntities);
@@ -32,6 +41,32 @@ public class Simulation implements Environment {
         setFoodRatio(foodRatio);
 
         initializeFoods();
+
+        initializeCreatures(getNumberOfEntities());
+    }
+
+
+    /**
+     *
+     * @param size Total number of entities
+     */
+    private void initializeCreatures(int size) {
+        creatures = new LinkedList<Ant>();
+        Ant ant;
+
+        while (creatures.size() < size) {
+            // Creates an ant.
+            ant = new Ant(getTurn(),
+                    findRandomLocation(simulationEnvironment.length),
+                    findRandomLocation(simulationEnvironment[0].length));
+
+            // Add ant to the creatures list.
+            creatures.add(ant);
+
+            // Put ants name to simulationEnv
+            simulationEnvironment[ant.getX()][ant.getY()] = ant.toString();
+        }
+
     }
 
     /**
@@ -45,7 +80,7 @@ public class Simulation implements Environment {
 
         // Fill the whole array as 'Empty'
         for (int i = 0; i < simulationEnvironment.length; i++)
-            Arrays.fill(simulationEnvironment[i], "Empty");
+            Arrays.fill(simulationEnvironment[i], empty);
     }
 
     /**
@@ -69,8 +104,8 @@ public class Simulation implements Environment {
      */
     @Override
     public boolean generateFood() {
-        int x = (int) Math.floor(Math.random() * (simulationEnvironment.length - 1)),
-                y = (int) Math.floor(Math.random() * (simulationEnvironment[0].length - 1));
+        int x = findRandomLocation(simulationEnvironment.length),
+                y = findRandomLocation(simulationEnvironment[0].length);
 
         if(Arrays.stream(FoodType.values()).noneMatch((f) -> f.toString().equals(simulationEnvironment[x][y]))){
             simulationEnvironment[x][y] = FoodType.values()[(int) Math.round(Math.random() * (FoodType.values().length - 1))].toString();
@@ -97,8 +132,8 @@ public class Simulation implements Environment {
             throw new IndexOutOfBoundsException("The given dimensions x:" + x + " y:" + y + " are out of the simulation borders");
 
         // Remove food if exists, throw exception otherwise.
-        if ((simulationEnvironment[x][y]).equalsIgnoreCase(food))
-            simulationEnvironment[x][y] = "Empty";
+        if (isFoodExist(x, y))
+            simulationEnvironment[x][y] = empty;
         else
             throw new IllegalArgumentException("Current location does not have food in it");
     }
@@ -118,6 +153,10 @@ public class Simulation implements Environment {
         this.numberOfEntities = numberOfEntities;
     }
 
+    public int getNumberOfEntities() {
+        return numberOfEntities;
+    }
+
     /**
      * This method accepts food ration in between 0.0 .. 1.0
      *
@@ -132,6 +171,29 @@ public class Simulation implements Environment {
 
         this.foodRatio = foodRatio;
     }
+
+    /**
+     * Returns the turn of the simulation
+     *
+     * @return current turn
+     */
+    public short getTurn() {
+        return turn;
+    }
+
+    /**
+     * Sets the Turn of the simulation
+     *
+     * @param turn current turn
+     */
+    private void setTurn(short turn) {
+        if (turn >= 0)
+            this.turn = turn;
+        else
+            throw new IllegalArgumentException("Turn cannot be negative.");
+
+    }
+
     /**
      * This method prints all the entities in the simulation
      */
@@ -146,5 +208,50 @@ public class Simulation implements Environment {
 
             System.out.println(currentLine.toString());
         }
+    }
+
+    /**
+     * Generates a {@code Math.random} value within the {@code limit} of the border
+     *
+     * @param limit Border of the simulation
+     * @return A random value within the limits
+     */
+    private int findRandomLocation(int limit){
+        return (int) Math.floor(Math.random() * (limit - 1));
+    }
+
+    /**
+     * This method handles the result of current turn and proceeds to next turn
+     */
+    public void endTurn(){
+        ListIterator<Ant> it = creatures.listIterator();
+        List<Ant> willRemoved = new ArrayList<>();
+
+        while (it.hasNext()) {
+            Ant a = it.next();
+            // Remove thee creature from the simulation
+            simulationEnvironment[a.getX()][a.getY()] = empty;
+
+            if (a.isAlive()) {
+                // Feed the creature if food exist
+                if (isFoodExist(a.getX(), a.getY()))
+                    a.eat(FoodType.valueOf(simulationEnvironment[a.getX()][a.getY()]), getTurn());
+
+                // Move the creature to new location
+                a.move(simulationEnvironment.length, simulationEnvironment[0].length);
+
+                // Store the creature to the simulation
+                simulationEnvironment[a.getX()][a.getY()] = a.toString();
+            } else
+                willRemoved.add(a);
+        }
+
+        creatures.removeAll(willRemoved);
+
+        setTurn((short)(getTurn() + 1));
+    }
+
+    private boolean isFoodExist(int x, int y){
+        return Arrays.stream(FoodType.values()).anyMatch((f) -> f.toString().equals(simulationEnvironment[x][y]));
     }
 }

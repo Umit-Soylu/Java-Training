@@ -30,7 +30,7 @@ public abstract class Creature implements Organism{
         setY(y);
         setGender();
         // The last day should be the birthday for initialization
-        setLastMealDay(getBirthday());
+        setLastMealDay(3);
     }
 
     /**
@@ -61,7 +61,7 @@ public abstract class Creature implements Organism{
      * @param birthday A positive value
      */
     public void setBirthday(short birthday) {
-        if (birthday > 0)
+        if (birthday >= 0)
             this.birthday = birthday;
         else
             throw new IllegalArgumentException("Birthday should be positive");
@@ -89,8 +89,8 @@ public abstract class Creature implements Organism{
     public void setLastMealDay(int lastMealDay) {
         if (lastMealDay >= getBirthday())
             this.lastMealDay = lastMealDay;
-        else
-            throw new IllegalArgumentException("Last meal day should be later than or equal to birthday");
+        //else
+        //    throw new IllegalArgumentException("Last meal day should be later than or equal to birthday");
     }
 
     public int getLastMealDay() {
@@ -170,7 +170,7 @@ public abstract class Creature implements Organism{
     @Override
     public void eat(FoodType food, Number currentDay) {
         if (food != null && currentDay != null)
-            setLastMealDay((Integer) currentDay);
+            setLastMealDay(food.getNutritionValue());
     }
 
     /**
@@ -220,5 +220,16 @@ public abstract class Creature implements Organism{
      */
     protected abstract boolean isCompatible(Creature c);
 
+    /**
+     * Checks the current situation of the organism
+     *
+     * @return true if alive, false otherwise
+     */
+    @Override
+    public boolean isAlive() {
+        // Decrease the last meal day by 1
+        setLastMealDay(getLastMealDay() - 1);
 
+        return (getLastMealDay() > 0);
+    }
 }

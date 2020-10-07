@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 class SimulationTest {
 
     Simulation testClass;
-    int length = 10, width = 10, nbOfEntities = 1;
-    float foodRatio = 0.5f;
+    int length = 10, width = 10, nbOfEntities = 10;
+    float foodRatio = 0.7f;
 
     @BeforeEach
     void setUp() {
@@ -23,5 +23,20 @@ class SimulationTest {
     @Test
     void display() {
         testClass.display();
+    }
+
+    @Test
+    void testEndTurn() throws InterruptedException {
+        int turnLimit = 5;
+        while (turnLimit > 0){
+            System.out.println("---- Current Turn:" + testClass.getTurn() + " ----");
+
+            testClass.display();
+            testClass.endTurn();
+            Thread.sleep(1000);
+
+            turnLimit--;
+        }
+
     }
 }

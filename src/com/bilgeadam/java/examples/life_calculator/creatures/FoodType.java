@@ -6,7 +6,7 @@ public enum FoodType {
     Meat(3);
 
     // This value is used when converting to string
-    private final static int maxStringLength = 5;
+    private final static int maxStringLength = 10;
 
     // Nutritional value of the given food
     private final int nutritionValue;

@@ -6,8 +6,17 @@ public class Ant extends Creature{
     private static final int maxChildrenCount = 4;
     private static final short lifeExpectancy = 5;
 
+    // This is the total number ants that is created
+    private static int index;
+
+    private static final int maxStringSize = 10;
+
+    // Id of the current ant
+    private final int id;
+
     public Ant(short birthday, int x, int y) {
         super(lifeExpectancy, birthday, x, y);
+        id = index++;
     }
 
     /**
@@ -49,5 +58,15 @@ public class Ant extends Creature{
     @Override
     protected boolean isCompatible(Creature c) {
         return (c instanceof Ant && getSex() == Gender.Female && c.getSex() == Gender.Male);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder s = new StringBuilder("Ant-" + id);
+
+        while (s.length() < maxStringSize)
+            s.append(" ");
+
+        return s.toString();
     }
 }

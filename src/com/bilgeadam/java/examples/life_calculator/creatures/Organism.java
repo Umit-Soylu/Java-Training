@@ -25,4 +25,11 @@ public interface Organism {
      */
     List copulate(Object o);
 
+    /**
+     * Checks the current situation of the organism
+     *
+     * @return true if alive, false otherwise
+     */
+    boolean isAlive();
+
 }
