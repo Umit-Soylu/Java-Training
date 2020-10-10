@@ -226,10 +226,15 @@ public abstract class Creature implements Organism{
      * @return true if alive, false otherwise
      */
     @Override
-    public boolean isAlive() {
-        // Decrease the last meal day by 1
-        setLastMealDay(getLastMealDay() - 1);
+    public boolean isAlive(Number currentDay) {
 
-        return (getLastMealDay() > 0);
+        // Decrease the last meal day by 1
+        if (((short) currentDay - getLastMealDay()) > 0) {
+            setLastMealDay(getLastMealDay() - 1);
+            return true;
+        } else {
+            setDeath((Short) currentDay);
+            return false;
+        }
     }
 }

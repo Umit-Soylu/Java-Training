@@ -21,7 +21,7 @@ class SimulationTest {
     }
 
     @Test
-    void display() {
+    void testDisplay() {
         testClass.display();
     }
 
