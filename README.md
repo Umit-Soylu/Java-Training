@@ -35,4 +35,5 @@ Following issues are introduced step by step at each commit. Please use the link
   - Queue concept and its application classes are in the [Queues Package](/src/com/bilgeadam/java/tutorials/collections/queues/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/collections/queues/)) (New keywords: `Queue`, `ArrayQueue`, `PriorityQueue` and `Stack`)
   - Set concept and its application classes are in the [Sets Package](/src/com/bilgeadam/java/tutorials/collections/sets/). (Test classes are under [here](/test/com/bilgeadam/java/tutorials/collections/sets/)) (New keywords: `Set`, `HashSet`, and `TreeSet`)
   - Collections real world example cases can be found [here](/src/com/bilgeadam/java/examples/). 
+* [Lambda](https://github.com/Umit-Soylu/Java-Training/edit/Lambdas) is introduced. (New keywords: `@FunctionalInterface`, `lambda`, and `runnable`)  
 * [Streams](https://github.com/Umit-Soylu/Java-Training/tree/Streams) is introduced with its application classes. (New keywords: `Stream`, `foreach`, `filter`, `count`, `limit`, `IntStream`, and much more)
