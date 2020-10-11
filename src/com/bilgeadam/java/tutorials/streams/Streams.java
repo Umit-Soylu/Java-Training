@@ -1,10 +1,6 @@
 package com.bilgeadam.java.tutorials.streams;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class Streams {
@@ -30,7 +26,7 @@ public class Streams {
     /**
      * Creates employees according to integer list
      *
-     * @param employees Where the new employees wıll be stored
+     * @param employees Where the new employees will be stored
      */
     public void generateEmployees(List<Employee> employees){
 //        for (Integer i : integerList) {
@@ -43,27 +39,32 @@ public class Streams {
 
 
     /**
-     * Creates employees where {@code Employee#id} is bigger than lowerBoundary
-     * @param employees
-     * @param lowerBoundary
+     * Creates employees, using {@link #integerList}, where;
+     * <ul>
+     *     <li> {@code Employee#id} > {@code lowerBoundary} </li>
+     *     <li> {@code Employee#id} < {@code upperBoundary} </li>
+     * </ul>
+     * @param employees     Where the new employees will be stored
+     * @param lowerBoundary Lower limit used with {@link #integerList}
+     * @param upperBoundary Upper limit used with {@link #integerList}.
      */
     public void generateCustomEmployees(List<Employee> employees, int lowerBoundary, int upperBoundary){
 //        integerList.forEach(e -> {
 //            if(e > lowerBoundary)
 //                employees.add(new Employee(e));
 //        });
-//
-        integerList.stream().                                   // Creates stream
-                filter(e -> e > lowerBoundary).                 // Intermediate operation
-                filter(e -> e < upperBoundary).                 // Intermediate operation
-                forEach(e -> employees.add(new Employee(e)));  // Terminate operation (calls only once)
+
+        integerList.stream().                                 // Creates a stream from the current list
+                filter(e -> e > lowerBoundary).               // Intermediate operation
+                filter(e -> e < upperBoundary).               // Intermediate operation
+                forEach(e -> employees.add(new Employee(e))); // Terminate operation (Can only be called once)
     }
 
     /**
      * Generates and return empty firstname size
      *
      * @param employees  Employee list to be filled
-     * @return Number of employees with empty names
+     * @return Number of employees with empty names {@link Employee#getFirstName()} == {@code null}
      */
     public long countEmployees(List<Employee> employees){
         generateEmployees(employees);
@@ -74,6 +75,7 @@ public class Streams {
     }
 
     /**
+     * Generates an employee list with a maximum {@code limit}
      *
      * @param employees  Employee list to be filled
      * @param limit      total size of Employees to be created
@@ -87,6 +89,7 @@ public class Streams {
 
     /**
      * Generate an array of integers
+     *
      * @param start   Start value
      * @param finish  End value (not included)
      * @return Array of integers
@@ -95,15 +98,20 @@ public class Streams {
         return IntStream.range(start, finish).toArray();
     }
 
-    public Set collectElements(){
+    /**
+     * Generate a set of {@link Employee} consists of unique {@link Employee#getId()}
+     *
+     * @return Set of {@link Employee}
+     */
+    public Set<Employee> collectElements(){
         List<Employee> employees = new ArrayList<>();
         generateEmployees(employees);
+        Set<Employee> res = new HashSet<>();
 
-        Set<Employee> employeeSet =
-                employees.stream().
+        employees.stream().
                 filter(e -> e.getFirstName().isEmpty()).
-                collect(Collectors.toSet());
+                forEach(e -> res.add(e));
 
-        return employeeSet;
+        return res;
     }
 }

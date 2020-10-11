@@ -52,10 +52,10 @@ class StreamsTest {
     @Test
     void generateLimitedEmployees() {
         List<Employee> testList = new ArrayList<>();
-        int limit = 30;
+        int limit = 3;
         testClass.generateLimitedEmployees(testList, limit);
 
-        assertEquals(6, testList.size());
+        assertEquals(Math.min(6, limit), testList.size());
     }
 
     @Test
@@ -74,11 +74,13 @@ class StreamsTest {
 
     @Test
     void collectElements() {
+        // Following is a simple case to show where sets are distinguished only be Employee's Id
         Set<Employee> test = new HashSet<>();
-        test.add(new Employee(1));
-        test.add(new Employee(1));
-        System.out.println("test.size() = " + test.size());
+        test.add(new Employee(1000));
+        test.add(new Employee(1000));
+        assertEquals(1, test.size());
 
-        assertEquals(6, testClass.collectElements().size());
+        // Implementation used with streams
+        assertEquals(3, testClass.collectElements().size());
     }
 }
