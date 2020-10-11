@@ -37,6 +37,7 @@ public class Ant extends Creature{
                 size--;
             }
 
+            System.out.println("Creature = " + toString() + " children" + children.size());
             return children;
         }
     }

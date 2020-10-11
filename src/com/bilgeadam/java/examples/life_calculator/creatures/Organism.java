@@ -30,6 +30,6 @@ public interface Organism {
      *
      * @return true if alive, false otherwise
      */
-    boolean isAlive(Number currentDay);
+    boolean processYear(Number currentDay);
 
 }

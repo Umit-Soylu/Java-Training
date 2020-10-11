@@ -3,14 +3,17 @@ package com.bilgeadam.java.examples.life_calculator.creatures;
 import java.util.List;
 
 public abstract class Creature implements Organism{
+    // Default hunger value when born
+    private final static int defaultHungerLevel = 3;
+
     // The birthday, death and life expectancy of the creature
     private Short lifeExpectancy, birthday, death;
 
     // Location of the creature
     private Integer x, y;
 
-    // Last day create eat food
-    private Integer lastMealDay;
+    // The nutritional value of the food minus number of days passed.
+    private int hungerLevel;
 
     // The gender of the creature
     private Gender sex;
@@ -30,7 +33,7 @@ public abstract class Creature implements Organism{
         setY(y);
         setGender();
         // The last day should be the birthday for initialization
-        setLastMealDay(3);
+        setHungerLevel(defaultHungerLevel);
     }
 
     /**
@@ -72,9 +75,10 @@ public abstract class Creature implements Organism{
     }
 
     public void setDeath(short death) {
-        if (death > getBirthday())
+        if (death > getBirthday()) {
             this.death = death;
-        else
+            System.out.println("Creature = " + this.toString() + " death = " + death);
+        } else
             throw new IllegalArgumentException("Death should be later than birthday");
     }
 
@@ -84,17 +88,15 @@ public abstract class Creature implements Organism{
 
     /**
      *
-     * @param lastMealDay The last day a meal is eaten.
+     * @param hungerLevel The last day a meal is eaten.
      */
-    public void setLastMealDay(int lastMealDay) {
-        if (lastMealDay >= getBirthday())
-            this.lastMealDay = lastMealDay;
-        //else
-        //    throw new IllegalArgumentException("Last meal day should be later than or equal to birthday");
+    public void setHungerLevel(int hungerLevel) {
+        System.out.println("Creature = " + this.toString() + "hungerLevel = " + hungerLevel + " Sex = " + getSex());
+        this.hungerLevel += hungerLevel;
     }
 
-    public int getLastMealDay() {
-        return lastMealDay;
+    public int getHungerLevel() {
+        return hungerLevel;
     }
 
 
@@ -170,7 +172,7 @@ public abstract class Creature implements Organism{
     @Override
     public void eat(FoodType food, Number currentDay) {
         if (food != null && currentDay != null)
-            setLastMealDay(food.getNutritionValue());
+            setHungerLevel(food.getNutritionValue());
     }
 
     /**
@@ -226,15 +228,16 @@ public abstract class Creature implements Organism{
      * @return true if alive, false otherwise
      */
     @Override
-    public boolean isAlive(Number currentDay) {
+    public boolean processYear(Number currentDay) {
 
-        // Decrease the last meal day by 1
-        if (((short) currentDay - getLastMealDay()) > 0) {
-            setLastMealDay(getLastMealDay() - 1);
-            return true;
-        } else {
-            setDeath((Short) currentDay);
+        // Decrease the hunger level by 1
+        setHungerLevel(-1);
+
+        // Check hunger level
+        if (getHungerLevel() <= 0) {
+            this.setDeath((short) currentDay);
             return false;
-        }
+        } else
+            return true;
     }
 }

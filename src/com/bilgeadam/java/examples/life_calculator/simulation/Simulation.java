@@ -6,9 +6,9 @@ import com.bilgeadam.java.examples.life_calculator.creatures.FoodType;
 
 import java.util.*;
 
-public class Simulation implements Environment {
+public final class Simulation implements Environment {
     // A set to store simulation environment values.
-    private HashSet<Object>[][] simulationEnvironment;
+    private LinkedHashSet<Object>[][] simulationEnvironment;
 
     // A set of alive creatures
     private HashSet<? extends Creature> aliveCreatures;
@@ -41,7 +41,7 @@ public class Simulation implements Environment {
 
         setFoodRatio(foodRatio);
 
-        //initializeFoods();
+        initializeFoods();
 
         initializeCreatures(getNumberOfEntities());
     }
@@ -53,7 +53,7 @@ public class Simulation implements Environment {
      * @param size Total number of {@link Ant}
      */
     private void initializeCreatures(int size) {
-        LinkedList<? super Creature> creatures = new LinkedList<>();
+        HashSet<? super Creature> creatures = new HashSet<>();
         Ant ant;
 
         while (creatures.size() < size) {
@@ -77,12 +77,12 @@ public class Simulation implements Environment {
      * @param width  The max width of the simulation
      */
     private void initializeEnvironment(int length, int width){
-        simulationEnvironment = new HashSet[length][width];
+        simulationEnvironment = new LinkedHashSet[length][width];
 
         // Fill the whole array with empty linkedList
         for (int i = 0; i < simulationEnvironment.length; i++)
             for (int j = 0; j < simulationEnvironment[0].length; j++)
-                simulationEnvironment[i][j] = new HashSet<>();
+                simulationEnvironment[i][j] = new LinkedHashSet<>();
     }
 
     /**
@@ -217,30 +217,65 @@ public class Simulation implements Environment {
      * @return A random value within the limits
      */
     private int findRandomLocation(int limit){
-        return (int) Math.floor(Math.random() * (limit - 1));
+        return (int) Math.round(Math.random() * (limit - 1));
     }
 
     /**
      * This method handles the result of current turn and proceeds to next turn
     */
     public void endTurn(){
+        List<Creature> movable = new ArrayList<>();
+
         // Iterate over all simulation locations
         for (int i = 0; i < simulationEnvironment.length; i++)
             for (int j = 0; j < simulationEnvironment[0].length; j++) {
                 List<Object> removable = new ArrayList<>();
 
                 if (!simulationEnvironment[i][j].isEmpty()) {
+                    // Candidates for copulation
+                    ArrayList<Creature> candidates = new ArrayList<>();
+
                     // Iterate over all elements in current location
-                    for (Object o : simulationEnvironment[i][j])
+                    for (Object o : simulationEnvironment[i][j]) {
                         if (isCreatureInstance(o)) {
-                            processCreatures((Creature) o);
-                            removable.add(o);
+                            Creature c = processCreatures((Creature) o);
+                            if (c == null) // Creature died
+                                removable.add(o);
+                            else if (i != c.getX() && j != c.getY()) { // Creature moved
+                                removable.add(o);
+                                movable.add(c);
+                            } else if (i == c.getX() && j == c.getY()) // Creature lives & not moving
+                                candidates.add(c);
                         }
+                    }
+
+                    // Children after copulation
+                    ArrayList<Creature> children = new ArrayList<>();
+
+                    // Copulate each candidate with each other
+                    if (candidates.size() > 1){
+                        for (int k = 0; k < candidates.size() - 1; k++)
+                            for (int l = 0; l < candidates.size(); l++) {
+                                List tmp = candidates.get(k).copulate(candidates.get(l));
+                                if (tmp != null && !tmp.isEmpty())
+                                    children.addAll(tmp);
+                            }
+                    }
+
+                    // Add children to the simulation
+                    for (Creature c : children)
+                        simulationEnvironment[c.getX()][c.getY()].add(c);
+
                 }
 
                 // Remove all creatures from old location
                 simulationEnvironment[i][j].removeAll(removable);
             }
+
+        // Add all creatures to new locations
+        for (Creature c : movable) {
+            simulationEnvironment[c.getX()][c.getY()].add(c);
+        }
 
         setTurn((short)(getTurn() + 1));
     }
@@ -250,20 +285,20 @@ public class Simulation implements Environment {
      * @param creature Creature to be investigated for given turn
      * @param <T> Type that extends {@link Creature}
      */
-    private <T extends Creature> void processCreatures(T creature){
-        // Check the state of creature
-        if (creature.isAlive(getTurn())) {
-            // Feed the creature if food exist
-            FoodType food = getFoodTypeOrNull(creature.getX(), creature.getY());
-            if (food != null)
-                creature.eat(food, getTurn());
+    private <T extends Creature> T processCreatures(T creature){
+        // Feed the creature if food exist
+        FoodType food = getFoodTypeOrNull(creature.getX(), creature.getY());
+        if (food != null)
+            creature.eat(food, getTurn());
 
+        // Check the state of creature
+        if (creature.processYear(getTurn())) {
             // Move the creature to new location
             creature.move(simulationEnvironment.length, simulationEnvironment[0].length);
 
-            // Store the creature to the simulation
-            simulationEnvironment[creature.getX()][creature.getY()].add(creature);
-        }
+            return creature;
+        } else
+            return null;
     }
 
 
