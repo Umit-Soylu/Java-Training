@@ -110,7 +110,7 @@ public class Streams {
 
         employees.stream().
                 filter(e -> e.getFirstName().isEmpty()).
-                forEach(e -> res.add(e));
+                forEach(res::add); //Used method reference to be called for each element
 
         return res;
     }
