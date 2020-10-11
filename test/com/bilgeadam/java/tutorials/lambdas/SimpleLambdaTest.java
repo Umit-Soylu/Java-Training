@@ -37,8 +37,4 @@ class SimpleLambdaTest {
         testClass.processLambda(()-> System.out.println(this.getClass().getName()));
     }
 
-    @Test
-    void printName(){
-        SimpleLambda.printMyName();
-    }
 }

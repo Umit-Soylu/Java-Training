@@ -8,12 +8,14 @@ public class SimpleLambda {
      * This constructor initializes two functional interface {@link Housework} and {@link Homeworks}
      */
     public SimpleLambda() {
+        // Implementation of functional interface with only one parameter
         homework = LessonName -> {
             printMyName();
             System.out.println(LessonName + " is done");
             System.out.println("Waiting more homeworks");
         };
 
+        // Implementation of functional interface with no parameter
         housework = () -> {
             printMyName();
             System.out.println("Too many housework to do");
@@ -24,19 +26,19 @@ public class SimpleLambda {
     /**
      * This method prints name of itself
      */
-    public static void printMyName(){
+    private static void printMyName(){
         System.out.println("This is " + SimpleLambda.class.getName());
     }
 
     /**
      * Generates a runnable result
      *
-     * @return A lambda process to be used
+     * @return A lambda process to ran
      */
     public Runnable generateWork(){
         return ()-> {
             System.out.println("This is lambda execution");
-            printMyName();
+            printMyName(); // Be wary that a private method is returned within the lambda
         };
     }
 
