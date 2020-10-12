@@ -198,16 +198,16 @@ public final class Simulation implements Environment {
      * This method prints all the entities in the simulation
      */
     public void display(){
-        StringBuilder currentLine;
+        StringBuilder currentLine = new StringBuilder();
 
-        for (HashSet<Object>[] s: simulationEnvironment){
-            currentLine = new StringBuilder();
-            for (HashSet<Object> elements: s) {
-                currentLine.append(elements.isEmpty() ? empty : elements.toArray()[elements.size() - 1].toString()).append(" ");
-            }
+        Arrays.stream(simulationEnvironment).
+                flatMap(e -> {
+                    currentLine.append(System.getProperty("line.separator"));   // Add EOL before each row
+                    return Arrays.stream(e);                                    // Return first dimension of the array as stream
+                }).
+                forEach(e -> currentLine.append(e.isEmpty() ? empty : e.toArray()[e.size() - 1].toString()).append(" "));
 
-            System.out.println(currentLine.toString());
-        }
+        System.out.println(currentLine.toString());
     }
 
     /**

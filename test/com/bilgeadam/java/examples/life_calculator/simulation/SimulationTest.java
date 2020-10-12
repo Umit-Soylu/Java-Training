@@ -37,6 +37,10 @@ class SimulationTest {
 
             turnLimit--;
         }
-
+    }
+    
+    @Test
+    public void test(){
+        testClass.test2();
     }
 }
