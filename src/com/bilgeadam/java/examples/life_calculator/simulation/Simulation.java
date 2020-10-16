@@ -3,6 +3,7 @@ package com.bilgeadam.java.examples.life_calculator.simulation;
 import com.bilgeadam.java.examples.life_calculator.creatures.Ant;
 import com.bilgeadam.java.examples.life_calculator.creatures.Creature;
 import com.bilgeadam.java.examples.life_calculator.creatures.FoodType;
+import com.bilgeadam.java.examples.life_calculator.statistics.DataStore;
 
 import java.util.*;
 
@@ -24,6 +25,9 @@ public final class Simulation implements Environment {
 
     // A display value if nothing exists
     private static final String empty = "Barren    ";
+
+    // A class to store statistics
+    private final DataStore statistics = new DataStore();
 
     /**
      * Constructor
@@ -239,9 +243,10 @@ public final class Simulation implements Environment {
                     for (Object o : simulationEnvironment[i][j]) {
                         if (isCreatureInstance(o)) {
                             Creature c = processCreatures((Creature) o);
-                            if (c == null) // Creature died
+                            if (c == null) { // Creature died
                                 removable.add(o);
-                            else if (i != c.getX() && j != c.getY()) { // Creature moved
+                                statistics.diedCreatures(1, getTurn()); //Store statistics for deaths
+                            } else if (i != c.getX() && j != c.getY()) { // Creature moved
                                 removable.add(o);
                                 movable.add(c);
                             } else if (i == c.getX() && j == c.getY()) // Creature lives & not moving
@@ -255,10 +260,12 @@ public final class Simulation implements Environment {
                     // Copulate each candidate with each other
                     if (candidates.size() > 1){
                         for (int k = 0; k < candidates.size() - 1; k++)
-                            for (int l = 0; l < candidates.size(); l++) {
-                                List tmp = candidates.get(k).copulate(candidates.get(l));
-                                if (tmp != null && !tmp.isEmpty())
+                            for (Creature candidate : candidates) {
+                                List tmp = candidates.get(k).copulate(candidate);
+                                if (tmp != null && !tmp.isEmpty()) {
                                     children.addAll(tmp);
+                                    statistics.addChildren(tmp.size(), getTurn()); // Store statistics for births
+                                }
                             }
                     }
 
@@ -339,5 +346,9 @@ public final class Simulation implements Environment {
      */
     private <T> boolean isCreatureInstance(T input){
         return input instanceof Creature;
+    }
+
+    public DataStore getStatistics() {
+        return statistics;
     }
 }

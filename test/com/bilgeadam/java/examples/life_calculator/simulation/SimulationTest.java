@@ -37,10 +37,14 @@ class SimulationTest {
 
             turnLimit--;
         }
+
+        System.out.println(testClass.getStatistics());
     }
     
     @Test
     public void test(){
-        testClass.test2();
+        testClass.display();
+
+        System.out.println(testClass.getStatistics());
     }
 }
