@@ -37,3 +37,4 @@ Following issues are introduced step by step at each commit. Please use the link
   - Collections real world example cases can be found [here](/src/com/bilgeadam/java/examples/). 
 * [Lambda](https://github.com/Umit-Soylu/Java-Training/edit/Lambdas) is introduced. (New keywords: `@FunctionalInterface`, `lambda`, and `runnable`)  
 * [Streams](https://github.com/Umit-Soylu/Java-Training/tree/Streams) is introduced with its application classes. (New keywords: `Stream`, `foreach`, `filter`, `count`, `limit`, `IntStream`, and much more)
+* [File Input and Output](https://github.com/Umit-Soylu/Java-Training/tree/FileIO) is introduced with file interactions. (New keywords: `File`, `FileOutputStream`, `FileInputStream`, `FileWriter`, `FileReader`, `BufferedReader`, and much more)
