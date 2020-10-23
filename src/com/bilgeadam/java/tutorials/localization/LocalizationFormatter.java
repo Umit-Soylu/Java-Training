@@ -3,25 +3,17 @@ package com.bilgeadam.java.tutorials.localization;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Currency;
-import java.util.Date;
 import java.util.Locale;
-import java.util.Timer;
+import java.util.ResourceBundle;
 
 public class LocalizationFormatter {
     // Pattern to represent
-    private final String regex = "dd/MMMM/YYYY hh:ss:SSSS";
+    private static final String regex = "dd/MMMM/YYYY hh:ss:SSSS";
 
     // Formatter used to change date or time format with requested locale
     DateTimeFormatter formatter;
 
-    // Assign date to initialization time;
-    Date date = new Date();
-
-    Timer timer = new Timer();
-
     NumberFormat numberFormat;
-    Currency currency;
 
     /**
      * Format currency with given locale
@@ -42,10 +34,23 @@ public class LocalizationFormatter {
     public String formatDate(Locale locale){
         formatter = DateTimeFormatter.ofPattern(regex, locale);
 
-
         LocalDateTime t = LocalDateTime.now();
 
         return formatter.format(t);
     }
 
+    /**
+     * This method generate messages according to the input params
+     * @param messageType Type of message to be generated
+     * @param locale      The requested locale for message
+     * @return the message
+     */
+    public String generateMessage(String messageType, Locale locale){
+        //This allow us to override default locale as Turkish
+        Locale.setDefault(new Locale("tr"));
+
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("messages", locale);
+
+        return resourceBundle.getString(messageType);
+    }
 }
