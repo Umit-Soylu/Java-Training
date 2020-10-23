@@ -25,8 +25,12 @@ class MessageBrokerTest {
     }
 
     @Test
-    void SendReceiveMessages() {
+    void SendReceiveMessages() throws InterruptedException {
         sender.start();
         receiver.start();
+
+        // Force current test method to wait till sender & receiver threads die
+        sender.join();
+        receiver.join();
     }
 }
