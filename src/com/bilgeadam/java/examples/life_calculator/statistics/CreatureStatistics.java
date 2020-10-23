@@ -13,6 +13,9 @@ enum CreatureStatistics {
     // A variable to store max turn acquired
     private static int maxTurn = 0;
 
+    // Value is stored for each turn
+    private final Map<Integer, Integer> value;
+
     /**
      * Constructor which initializes inner variables
      */
@@ -20,14 +23,12 @@ enum CreatureStatistics {
         value = new TreeMap<>();
     }
 
-    // Value is stored for each turn
-    private final Map<Integer, Integer> value;
 
     /**
      * Increment value by 1 for given turn
      * @param turn Requested turn
      */
-    protected void addValue(Integer turn) {
+    protected void incrementValue(Integer turn) {
         CreatureStatistics.maxTurn = Math.max(CreatureStatistics.maxTurn, turn);
 
         value.put(turn, value.getOrDefault(turn, 0) + 1);
@@ -37,7 +38,7 @@ enum CreatureStatistics {
      * Decrement value by 1 for given turn
      * @param turn Requested turn
      */
-    protected void removeValue(Integer turn){
+    protected void decrementValue(Integer turn){
         CreatureStatistics.maxTurn = Math.max(CreatureStatistics.maxTurn, turn);
 
         value.put(turn, value.getOrDefault(turn, 1) - 1);
@@ -76,6 +77,9 @@ enum CreatureStatistics {
         StringBuilder s = new StringBuilder();
 
         s.append(String.format("%" + maxStringLength + "s", turn));
+
+        //s.append(CreatureStatistics.AliveCreatures.value.get(turn)).
+        //        append(CreatureStatistics.DeadCreatures.value.get(turn));
 
         Arrays.stream(CreatureStatistics.values()).forEach(e ->
                 s.append(

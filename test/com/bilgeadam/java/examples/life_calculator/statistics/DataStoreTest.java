@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 class DataStoreTest {
     DataStore testClass;
 
@@ -29,4 +31,11 @@ class DataStoreTest {
         System.out.println(testClass);
     }
 
+    @Test
+    void printStatistics() throws IOException {
+        //testClass.addChildren(1, 2);
+        System.out.println(testClass);
+
+        testClass.printStatistics();
+    }
 }

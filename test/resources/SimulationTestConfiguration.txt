@@ -1,0 +1,5 @@
+length : 10
+width : 5
+nbOfEntities : 45
+foodRatio : 60
+turn : 25

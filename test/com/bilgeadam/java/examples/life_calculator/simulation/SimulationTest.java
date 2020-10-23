@@ -47,4 +47,5 @@ class SimulationTest {
 
         System.out.println(testClass.getStatistics());
     }
+
 }

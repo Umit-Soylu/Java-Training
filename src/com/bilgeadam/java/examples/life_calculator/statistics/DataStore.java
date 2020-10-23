@@ -1,5 +1,7 @@
 package com.bilgeadam.java.examples.life_calculator.statistics;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Arrays;
 
 public class DataStore {
@@ -12,7 +14,7 @@ public class DataStore {
      */
     public void addChildren(int nbOfChildren, Number turn){
         for (int i = 0; i < nbOfChildren; i++)
-            CreatureStatistics.AliveCreatures.addValue(turn.intValue());
+            CreatureStatistics.AliveCreatures.incrementValue(turn.intValue());
     }
 
     /**
@@ -23,8 +25,8 @@ public class DataStore {
      */
     public void diedCreatures(int nbOfDead, Number turn){
         for (int i = 0; i < nbOfDead; i++) {
-            CreatureStatistics.AliveCreatures.removeValue(turn.intValue());
-            CreatureStatistics.DeadCreatures.addValue(turn.intValue());
+            CreatureStatistics.AliveCreatures.decrementValue(turn.intValue());
+            CreatureStatistics.DeadCreatures.incrementValue(turn.intValue());
         }
     }
 
@@ -42,9 +44,22 @@ public class DataStore {
 
         // Iterate for each turn stored
         for (int i = 0; i <= CreatureStatistics.getMaxTurn(); i++) {
-            s.append(CreatureStatistics.generateStatistics(i)).append(System.getProperty("line.separator"));
+            s.append(CreatureStatistics.generateStatistics(i)).
+                    append(System.getProperty("line.separator"));
         }
 
         return s.toString();
+    }
+
+    public void printStatistics() throws IOException {
+        FileWriter out = new FileWriter("src/resources/Statistics.txt");
+        //File f = new File("src/resources/Statistics.txt");
+        try {
+            out.write(this.toString());
+            out.flush();
+        } finally {
+            out.close();
+        }
+
     }
 }

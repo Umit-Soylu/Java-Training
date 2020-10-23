@@ -77,7 +77,7 @@ public abstract class Creature implements Organism{
     public void setDeath(short death) {
         if (death > getBirthday()) {
             this.death = death;
-            System.out.println("Creature = " + this.toString() + " death = " + death);
+            //System.out.println("Creature = " + this.toString() + " death = " + death);
         } else
             throw new IllegalArgumentException("Death should be later than birthday");
     }
@@ -91,7 +91,7 @@ public abstract class Creature implements Organism{
      * @param hungerLevel The last day a meal is eaten.
      */
     public void setHungerLevel(int hungerLevel) {
-        System.out.println("Creature = " + this.toString() + "hungerLevel = " + hungerLevel + " Sex = " + getSex());
+        //System.out.println("Creature = " + this.toString() + "hungerLevel = " + hungerLevel + " Sex = " + getSex());
         this.hungerLevel += hungerLevel;
     }
 
@@ -180,8 +180,8 @@ public abstract class Creature implements Organism{
      */
     @Override
     public void move(Number borderWidth, Number borderHeight) {
-        setX((int) (Math.round(Math.random() * 2) - 1), (int) borderHeight);
-        setY((int) (Math.round(Math.random() * 2) - 1), (int) borderWidth);
+        setX((int) (Math.round(Math.random() * 2) - 1), (int) borderWidth);
+        setY((int) (Math.round(Math.random() * 2) - 1), (int) borderHeight);
     }
 
     /**
