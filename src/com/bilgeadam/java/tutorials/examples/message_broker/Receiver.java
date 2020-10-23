@@ -3,8 +3,6 @@ package com.bilgeadam.java.tutorials.examples.message_broker;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Receiver implements Runnable{
-    private String message;
-
     private final MessageBroker broker;
 
     /**
@@ -22,12 +20,6 @@ public class Receiver implements Runnable{
 
             SleepRandomly();
         }
-        /*
-        while (!(message = broker.receiveMessage()).equals(Sender.lastMessage)){
-            System.out.println("Received message is '" + message + "'.");
-
-            SleepRandomly();
-        }*/
     }
 
     /**

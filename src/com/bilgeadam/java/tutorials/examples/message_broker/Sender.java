@@ -3,7 +3,7 @@ package com.bilgeadam.java.tutorials.examples.message_broker;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Sender implements Runnable {
-    public static String lastMessage = "EOM";
+    public static final String lastMessage = "EOM";
 
     private static final String[] messages = {"Message-1", "Message-2", "Message-3", "Message-4",  "Message-5", lastMessage};
 
