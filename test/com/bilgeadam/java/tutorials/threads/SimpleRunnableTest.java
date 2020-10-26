@@ -25,14 +25,20 @@ class SimpleRunnableTest {
     }
 
     @Test
-    void multiThread(){
+    void multiThread() throws InterruptedException {
         System.out.println("Here is " + Thread.currentThread().getName());
 
         // Create a new thread to run test method
         Thread t1 = new Thread(testMethod);
         t1.start();
 
+        t1.join();
+
+        Thread t2 = new Thread(testMethod);
+        t2.start();
+        t2.join();
+
         // Print the birthday from here
-        System.out.println(testMethod.getBirth());
+        testMethod.run();
     }
 }

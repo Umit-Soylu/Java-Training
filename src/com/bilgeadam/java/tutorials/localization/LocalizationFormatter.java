@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 
 public class LocalizationFormatter {
     // Pattern to represent
-    private static final String regex = "dd/MMMM/YYYY hh:ss:SSSS";
+    private static final String regex = "dd/MMMM/YYYY hh:mm:ss:SSSS";
 
     // Formatter used to change date or time format with requested locale
     DateTimeFormatter formatter;

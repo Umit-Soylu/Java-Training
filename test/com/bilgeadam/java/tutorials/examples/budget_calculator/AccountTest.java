@@ -42,7 +42,6 @@ class AccountTest {
         t.join(5);
 
         assertTrue(t.isAlive());
-
     }
 
     @Test

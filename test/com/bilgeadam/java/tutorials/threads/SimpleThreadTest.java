@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 class SimpleThreadTest {
     // Number of threads to create
     private final static int count = 10;
@@ -25,7 +27,14 @@ class SimpleThreadTest {
     }
 
     @Test
-    void run() {
+    void mainRun(){
+        SimpleThread t = new SimpleThread();
+        t.run();
+        //t.interrupt();
+    }
+
+    @Test
+    void run()  {
         // Start each thread
         for (SimpleThread simpleThread : t) {
             simpleThread.start();
@@ -33,6 +42,15 @@ class SimpleThreadTest {
 
         // Print current test method's thread
         System.out.println("This is " + Thread.currentThread().getName());
+
+        // Join each Thread to Main thread using Stream parallel API
+        Arrays.stream(t).parallel().forEach(e -> {
+            try {
+                e.join();
+            } catch (InterruptedException interruptedException) {
+                interruptedException.printStackTrace();
+            }
+        });
     }
 
     @Test
@@ -44,14 +62,19 @@ class SimpleThreadTest {
 
         // Intentionally Interrupt thread
         t[1].interrupt();
+
+        // Print current test method's thread
+        System.out.println("This is " + Thread.currentThread().getName());
+
     }
 
     @Test
     void testThreadPriorityAndCount(){
         // Start each thread with priority
         for (int i = 0; i < count; i++) {
-            t[i].start();
             t[i].setPriority(i+1); // Higher the priority better.
+            t[i].start();
+
         }
 
         // Print the priorities of threads

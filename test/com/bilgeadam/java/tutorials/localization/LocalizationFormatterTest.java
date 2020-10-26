@@ -23,17 +23,17 @@ class LocalizationFormatterTest {
     }
 
     @Test
-    void formatDate() {
-        Locale l = new Locale.Builder().setLanguage("tr").setRegion("AR").build();
+    void formatCurrency() {
+        Locale l = new Locale.Builder().setLanguage("ar").setRegion("AU").build();
 
-        System.out.println(testClass.formatDate(l));
+        System.out.println(testClass.formatCurrency(l));
     }
 
     @Test
-    void formatCurrency() {
-        Locale l = new Locale.Builder().setLanguage("us").setRegion("AR").build();
+    void formatDate() {
+        Locale l = new Locale.Builder().setLanguage("ar").setRegion("TR").build();
 
-        System.out.println(testClass.formatCurrency(l));
+        System.out.println(testClass.formatDate(l));
     }
 
     @Test
@@ -54,9 +54,18 @@ class LocalizationFormatterTest {
 
     @Test
     void generateDefaultMessages() {
-        Locale l = new Locale("fr");
-
+        Locale l = new Locale("tr");
         assertEquals("Hoşgeldiniz",  testClass.generateMessage("welcome", l));
         assertEquals("Görüşmek üzere",  testClass.generateMessage("goodbye", l));
+
+        l = new Locale("en");
+        assertEquals("Welcome",  testClass.generateMessage("welcome", l));
+        assertEquals("See you later",  testClass.generateMessage("goodbye", l));
+
+        l = new Locale("ar");
+        assertEquals("Hoşgeldiniz",  testClass.generateMessage("welcome", l));
+        assertEquals("Görüşmek üzere",  testClass.generateMessage("goodbye", l));
+
     }
+
 }

@@ -2,7 +2,7 @@ package com.bilgeadam.java.tutorials.threads;
 
 public class SimpleThread extends Thread{
     // The sleep time for the thread, prevents its death
-    private static final long duration = 10_000_000L;
+    private static final long duration = 10_000L;
 
     /**
      * Let this thread to print its name and sleep for {@link #duration}
@@ -18,5 +18,7 @@ public class SimpleThread extends Thread{
             System.out.println("I, '" + Thread.currentThread().getName() + "', is awake");
             //e.printStackTrace();
         }
+
+        System.out.println("I, '" + Thread.currentThread().getName() + "', is dying");
     }
 }

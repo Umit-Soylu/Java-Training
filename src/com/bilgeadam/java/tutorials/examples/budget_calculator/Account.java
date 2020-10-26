@@ -18,7 +18,7 @@ public class Account {
         System.out.println(Thread.currentThread().getName() + ": Deposit success");
 
         // Wake up any thread waiting for this object
-        notify();
+        //notifyAll();
     }
 
     /**
@@ -35,6 +35,8 @@ public class Account {
                 wait();
             } catch (InterruptedException exception) {
                 //exception.printStackTrace();
+                System.out.println(Thread.currentThread().getName() + "!!!!");
+
             }
         }
 
