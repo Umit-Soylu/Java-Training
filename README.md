@@ -39,3 +39,8 @@ Following issues are introduced step by step at each commit. Please use the link
 * [Streams](https://github.com/Umit-Soylu/Java-Training/tree/Streams) is introduced with its application classes. (New keywords: `Stream`, `foreach`, `filter`, `count`, `limit`, `IntStream`, and much more)
 * [File Input and Output](https://github.com/Umit-Soylu/Java-Training/tree/FileIO) is introduced with file interactions. (New keywords: `File`, `FileOutputStream`, `FileInputStream`, `FileWriter`, `FileReader`, `BufferedReader`, and much more)
 * [Localization](https://github.com/Umit-Soylu/Java-Training/tree/Localization) is introduced with file interactions. (New keywords: `NumberFormat`, `DateTimeFormatter`, and `Locale`)
+## Concurrency & Multithreading
+* [Threads](https://github.com/Umit-Soylu/Java-Training/tree/Threads) are introduced. (New Keywords: `Thread`, `ThreadGroups`, `Priorities`, `start`, `run`, and `synchronized`)
+  - Thread Synchronization, multithreading, and concurrency is introduced via [examples](https://github.com/Umit-Soylu/Java-Training/tree/Threads/src/com/bilgeadam/java/tutorials/examples) (New Keywords: `ThreadFactory`, `sleep`, `wait`, `notify`, and `notifyAll`)  
+    - `Sleep` vs `Wait` explained.
+    - Object locks explained  
