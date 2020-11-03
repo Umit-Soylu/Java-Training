@@ -10,11 +10,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import static java.lang.Thread.sleep;
 import static org.junit.jupiter.api.Assertions.*;
 
 class VectorManipulatorTest {
-    private static int count = 15_000;
+    private static final int count = 15_000;
 
     Vector<Integer> target;
 
@@ -50,7 +49,7 @@ class VectorManipulatorTest {
         ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(10);
 
         // Stream the threads array and feed each run method to thread pool.
-        Arrays.stream(threads).parallel().forEach(e -> threadPoolExecutor.execute(() -> e.run()));
+        Arrays.stream(threads).parallel().forEach(threadPoolExecutor::execute);
 
         // Pool needs to be shutdown manually
         threadPoolExecutor.shutdown();

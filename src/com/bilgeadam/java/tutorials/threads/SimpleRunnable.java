@@ -6,7 +6,7 @@ import java.util.Date;
 public class SimpleRunnable implements Runnable {
     private static final String pattern = "dd/MMMM/YYYY HH:mm:ss:SSS";
     private final SimpleDateFormat formatter;
-
+    int s ;
     private final Date birth;
 
     public SimpleRunnable() {

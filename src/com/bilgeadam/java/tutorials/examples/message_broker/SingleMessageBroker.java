@@ -13,6 +13,7 @@ public class SingleMessageBroker implements MessageBroker{
      *
      * @param newMessage Message to be send
      */
+    @Override
     public synchronized void sendMessage(String newMessage) {
         while(!isMessageInTransfer){
             try {
@@ -37,6 +38,7 @@ public class SingleMessageBroker implements MessageBroker{
      *
      * @return The message to return
      */
+    @Override
     public synchronized String receiveMessage(){
         while (isMessageInTransfer){
             try {

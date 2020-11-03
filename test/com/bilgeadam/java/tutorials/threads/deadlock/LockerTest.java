@@ -32,8 +32,8 @@ class LockerTest {
 
     @Test
     void DeadLockScenario() throws InterruptedException {
-        t1 = new Thread(first.LockObject(one));
-        t2 = new Thread(second.LockObject(two));
+        t1 = new Thread(first.LockObject(one), "Locker-1");
+        t2 = new Thread(second.LockObject(two), "Locker-2");
 
         t1.start();
         t2.start();

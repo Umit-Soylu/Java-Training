@@ -1,9 +1,11 @@
 package com.bilgeadam.java.tutorials.threads.deadlock;
 
+import java.util.concurrent.locks.LockSupport;
+
 public class Locker implements RunForLock {
     // These are the locks will be locked
     private final Object lockOne, lockTwo;
-
+    private Object target;
     /**
      * Constructor with lock objects as reference
      *
@@ -19,7 +21,7 @@ public class Locker implements RunForLock {
      * Tries to lock given object
      *
      * @param lock The lock to be acquired
-     * @return
+     * @return Runnable instance
      */
     @Override
     public Runnable LockObject(Object lock) {
@@ -34,13 +36,12 @@ public class Locker implements RunForLock {
                     // Thread.currentThread().interrupt();
                 }
 
-                Object target = lock.equals(lockOne) ? lockTwo : lockOne;
+                target = lock.equals(lockOne) ? lockTwo : lockOne;
                 //System.out.println(Thread.currentThread().getName() + " is missing " + target);
 
                 // Capture remaining lock
                 synchronized (target) {
                     System.out.println(Thread.currentThread().getName() + " is holding " + target);
-
                 }
             }
         };

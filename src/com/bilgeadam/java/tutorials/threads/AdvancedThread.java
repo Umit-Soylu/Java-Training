@@ -16,7 +16,7 @@ public class AdvancedThread extends Thread{
      * Runs current thread and waits until further notification
      */
     @Override
-    public synchronized void run() {
+    public void run() {
         // Print turns
         for (int i = 0; i < maxTurn; i++) {
             System.out.println(Thread.currentThread().getName() + " turn is " + i);

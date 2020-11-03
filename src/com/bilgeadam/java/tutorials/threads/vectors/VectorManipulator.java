@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class VectorManipulator extends Thread{
 
     // This is the group for my VectorManipulator class
-    private static ThreadGroup group = new ThreadGroup("VectorManipulationGroup");
+    private static final ThreadGroup group = new ThreadGroup("VectorManipulationGroup");
 
     private final Vector<Integer> integers;
 
