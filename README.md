@@ -44,3 +44,4 @@ Following issues are introduced step by step at each commit. Please use the link
   - Thread Synchronization, multithreading, and concurrency is introduced via [examples](https://github.com/Umit-Soylu/Java-Training/tree/Threads/src/com/bilgeadam/java/tutorials/examples) (New Keywords: `ThreadFactory`, `sleep`, `wait`, `notify`, and `notifyAll`)  
     - `Sleep` vs `Wait` explained.
     - Object locks explained  
+    - Deadlock problem explained
