@@ -22,6 +22,8 @@ public class Shop extends Thread{
      */
     public Shop(int nbOfCooks, int nbOfCarriers, long workHours) {
         this.workHours = workHours;
+
+        // This will allow me to modify linked list in a thread safe manner.
         orders = Collections.synchronizedList(new LinkedList<>());
 
         cooks = Executors.newScheduledThreadPool(nbOfCooks, new ThreadCounterFactory("Cook"));
@@ -44,7 +46,7 @@ public class Shop extends Thread{
     /**
      * This method allow us to prepare meals
      */
-    private void prepareMeal(Order o)  {
+    private void finalizeMeal(Order o)  {
         carriers.schedule(() -> this.deliverOrder(o), 30, TimeUnit.MILLISECONDS);
         System.out.println(Thread.currentThread().getName() + " prepared " + o.getOrder());
     }
@@ -69,7 +71,7 @@ public class Shop extends Thread{
 
             while (!orders.isEmpty()) {
                 Order o = orders.remove(0);
-                cooks.schedule(() -> this.prepareMeal(o), o.getOrder().getPreparationTime() , TimeUnit.MILLISECONDS);
+                cooks.schedule(() -> this.finalizeMeal(o), o.getOrder().getPreparationTime() , TimeUnit.MILLISECONDS);
             }
 
             synchronized (workLock) {

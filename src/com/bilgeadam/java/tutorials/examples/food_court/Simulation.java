@@ -8,12 +8,12 @@ import java.util.concurrent.TimeUnit;
 public class Simulation {
     // Period in between the orders
     private static final long orderPeriod = 45;
+    private static final int nbOfCustomers = 15;
 
     private static final LinkedList<Order> orders = new LinkedList<>();
 
     private static final Shop s = new Shop(4,10, 8 * 60);
 
-    private static final int nbOfCustomers = 15;
 
     public static void main(String[] args) throws InterruptedException {
         ScheduledExecutorService customers = Executors.newScheduledThreadPool(nbOfCustomers, new ThreadCounterFactory("Customer"));

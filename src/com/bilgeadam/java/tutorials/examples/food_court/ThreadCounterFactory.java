@@ -6,7 +6,7 @@ public class ThreadCounterFactory implements ThreadFactory {
 
     private final String naming;
 
-    private int count;
+    private int counter;
 
     public ThreadCounterFactory(String name) {
         naming = name;
@@ -22,6 +22,6 @@ public class ThreadCounterFactory implements ThreadFactory {
      */
     @Override
     public Thread newThread(Runnable r) {
-        return new Thread(r, naming + "-" + count++);
+        return new Thread(r, naming + "-" + counter++);
     }
 }
