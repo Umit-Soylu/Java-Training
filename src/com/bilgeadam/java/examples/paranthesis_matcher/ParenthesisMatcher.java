@@ -1,6 +1,8 @@
 package com.bilgeadam.java.examples.paranthesis_matcher;
 
-import java.util.Stack;
+import javax.swing.text.DateFormatter;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class ParenthesisMatcher {
     private final Stack matcher;
@@ -16,6 +18,15 @@ public class ParenthesisMatcher {
 
     private void btest(){
         int j = 3;
+        Date d = new Date();
+        SimpleDateFormat f;
+        Calendar x = new GregorianCalendar();
+        List l = new LinkedList() ;
+        Map x = new Hashtable();
+        Deque d =new ArrayDeque();
+        Queue s = new PriorityQueue();
+        Set s = new LinkedHashSet();
+
     }
     /**
      * This method will parse the string as mathematical expression and generate result

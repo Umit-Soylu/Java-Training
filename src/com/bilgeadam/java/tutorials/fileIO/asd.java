@@ -5,8 +5,8 @@ import java.util.concurrent.Executors;
 
 public class asd {
     int test ;
-    static ha t1 = new ha();
-    static ha t2 = new ha();
+    static Thread t1 = new Thread();
+    static Thread t2 = new Thread();
 
     public static void main(String[] args) throws InterruptedException {
         t1.start();
