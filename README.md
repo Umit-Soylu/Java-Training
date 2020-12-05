@@ -46,7 +46,7 @@ Following issues are introduced step by step at each commit. Please use the link
     - Object locks explained  
     - Deadlock problem explained
 ## JDBC
-* [Java Database Connectivity](https://github.com/Umit-Soylu/Java-Training/tree/JDBC) is introduced. (New Keywords: `JDBC`, `SQL`, `Connection`, and `Databse`)
+* [Java Database Connectivity](https://github.com/Umit-Soylu/Java-Training/tree/JDBC) is introduced. (New Keywords: `JDBC`, `SQL`, `Connection`, and `Database`)
 ## Frameworks
 ### Hibernate
 * [Hıbernate](https://github.com/Umit-Soylu/Java-Training/tree/Hibernate) is introduced. (New Keywords: `Session Factory`, `Session`, `Transaction`, and `Annotations`)
