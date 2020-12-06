@@ -21,8 +21,12 @@ public class Employee {
     private Date birthday;
 
     @Enumerated(EnumType.STRING)
-    @Column
+    @Column(name = "current_role")
     private Roles currentRole;
+
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "salary_id", referencedColumnName = "id")
+    private Salary salary;
 
     // Hibernate needs this
     public Employee() {
@@ -76,5 +80,25 @@ public class Employee {
 
     public void setCurrentRole(Roles currentRole) {
         this.currentRole = currentRole;
+    }
+
+    public Salary getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Salary salary) {
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "birthday=" + birthday +
+                ", currentRole=" + currentRole +
+                ", firstName='" + firstName + '\'' +
+                ", id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
+                '}';
     }
 }

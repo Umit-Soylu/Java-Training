@@ -2,43 +2,30 @@ package com.bilgeadam.java.tutorials.hibernate.controller;
 
 import com.bilgeadam.java.tutorials.hibernate.config.SessionFactoryGenerator;
 import com.bilgeadam.java.tutorials.hibernate.entities.Employee;
-
 import com.bilgeadam.java.tutorials.hibernate.entities.Roles;
-import org.hibernate.HibernateException;
+import com.bilgeadam.java.tutorials.hibernate.entities.Salary;
+import com.bilgeadam.java.tutorials.hibernate.entities.SalaryTypes;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.Metadata;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
-
-public class EmployeeController {
-
+public class SalaryController {
     private final SessionFactory sessionFactory;
 
-    public EmployeeController() {
-        SessionFactoryGenerator generator = SessionFactoryGenerator.getInstance();
-        sessionFactory = generator.acquireSessionFactoryViaJava();
+    public SalaryController() {
+        sessionFactory = SessionFactoryGenerator.getInstance().acquireSessionFactoryViaJava();
     }
 
-
-
     /**
-     * Adds a new employee to the DB.
-     * @param employee new employee
-     * @return employee id - null if not created.
+     * Adds a new salary to the database
+     * @param salary new salary to be added
+     * @return id of the salary
      */
-    public Integer addEmployee(Employee employee){
-        Integer newId = null;
+    public Long addSalary(Salary salary){
+        Long newId = null;
 
         // Acquire session using factory
         Session session = sessionFactory.openSession();
@@ -48,7 +35,7 @@ public class EmployeeController {
 
         try{
             transaction = session.beginTransaction();
-            newId = (Integer) session.save(employee); // Stores the employee to the DB.
+            newId = (Long) session.save(salary); // Stores the salary to the DB.
 
             // Commit the transaction
             transaction.commit();
@@ -63,10 +50,10 @@ public class EmployeeController {
     }
 
     /**
-     * Return the list of all {@link Employee}
-     * @return list of employees, null if it is empty
+     * Return the list of all {@link Salary}
+     * @return list of salaries, null if it is empty
      */
-    public List<Employee> getEmployees(){
+    public List<Salary> getSalaries(){
         // Acquire session using factory
         Session session = sessionFactory.openSession();
 
@@ -74,13 +61,13 @@ public class EmployeeController {
         Transaction transaction = null;
 
         // Result list
-        List<Employee> employees = null;
+        List<Salary> salaries = null;
 
         try{
             transaction = session.beginTransaction();
 
-            // Use java object types (Employee) since it is HQL not SQL (for SQL it is employees)
-            employees = session.createQuery("FROM Employee", Employee.class).list();
+            // Use java object types (Salary) since it is HQL not SQL (for SQL it is employees)
+            salaries = session.createQuery("FROM Salary", Salary.class).list();
 
             // Commit the transaction
             transaction.commit();
@@ -91,15 +78,15 @@ public class EmployeeController {
             session.close();
         }
 
-        return employees;
+        return salaries;
     }
 
     /**
      * Gets the employee according to id
      * @param id Primary key of the employee
-     * @return employee
+     * @return salary
      */
-    public Employee getEmployee(int id){
+    public Salary getSalary(long id){
         // Acquire session using factory
         Session session = sessionFactory.openSession();
 
@@ -107,11 +94,11 @@ public class EmployeeController {
         Transaction transaction = null;
 
         // Result list
-        Employee employee = null;
+        Salary salary = null;
 
         try{
             transaction = session.beginTransaction();
-            employee = session.get(Employee.class, id);
+            salary = session.get(Salary.class, id);
 
             // Commit the transaction
             transaction.commit();
@@ -122,14 +109,14 @@ public class EmployeeController {
             session.close();
         }
 
-        return employee;
+        return salary;
     }
 
     /**
-     * Deletes the employee according to id
-     * @param id Primary key of the employee
+     * Deletes the salary according to id
+     * @param id Primary key of the salary
      */
-    public void deleteEmployee(int id){
+    public void deleteSalary(long id){
         // Acquire session using factory
         Session session = sessionFactory.openSession();
 
@@ -139,9 +126,9 @@ public class EmployeeController {
         try{
             transaction = session.beginTransaction();
             // First find the relevant employee
-            Employee employee = session.get(Employee.class, id);
+            Salary salary = session.get(Salary.class, id);
             // Delete the employee
-            session.delete(employee);
+            session.delete(salary);
 
             // Commit the transaction
             transaction.commit();
@@ -154,11 +141,11 @@ public class EmployeeController {
     }
 
     /**
-     * Updates the role of the employee
-     * @param id Id of the employee
-     * @param newRole new role for the employee
+     * Updates the salary based on {@link SalaryTypes}
+     * @param newSalary updated salary for the type
+     * @param type type of the salary
      */
-    public void updateEmployeeRole(int id, Roles newRole){
+    public void updateSalaryByType(int newSalary, SalaryTypes type){
         // Acquire session using factory
         Session session = sessionFactory.openSession();
 
@@ -168,11 +155,19 @@ public class EmployeeController {
         try{
             transaction = session.beginTransaction();
             // First find the relevant employee
-            Employee employee = session.get(Employee.class, id);
+            Query query = session.createQuery("FROM Salary AS S WHERE S.type = :salaryType" , Salary.class);
+            query.setParameter("salaryType", type);
+            Salary salary = (Salary) query.list().get(0);
+
+            // Create new if given typed salary does not exist
+            if (salary == null) {
+                salary = new Salary();
+                salary.setType(type);
+            }
 
             // Update the employee
-            employee.setCurrentRole(newRole);
-            session.save(employee);
+            salary.setSalary(newSalary);
+            session.save(salary);
 
             // Commit the transaction
             transaction.commit();
