@@ -24,7 +24,7 @@ public class Employee {
     @Column(name = "current_role")
     private Roles currentRole;
 
-    @OneToOne(cascade = CascadeType.DETACH)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "salary_id", referencedColumnName = "id")
     private Salary salary;
 

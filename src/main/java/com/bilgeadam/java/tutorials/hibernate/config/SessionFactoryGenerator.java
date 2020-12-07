@@ -58,8 +58,9 @@ public class SessionFactoryGenerator {
         properties.setProperty("hibernate.connection.username", "umitsoylu");
         properties.setProperty("hibernate.connection.password", "");
         properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.hbm2ddl.auto", "update");
         //properties.setProperty("hibernate.hbm2ddl.auto", "create");
-        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        //properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
 
         Configuration configuration = new Configuration();
         configuration.setProperties(properties);

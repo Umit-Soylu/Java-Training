@@ -72,8 +72,7 @@ public class Salary {
     @Override
     public String toString() {
         return "Salary{" +
-                "employee=" + employee +
-                ", id=" + id +
+                "id=" + id +
                 ", salary=" + salary +
                 ", type=" + type +
                 '}';

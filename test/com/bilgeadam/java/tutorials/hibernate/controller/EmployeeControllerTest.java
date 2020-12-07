@@ -47,11 +47,9 @@ class EmployeeControllerTest {
         }
 
         employee.setSalary(salary);
-        employee.getSalary().setEmployee(employee);
+        //employee.getSalary().setEmployee(employee);
         int id = testClass.addEmployee(employee);
-        assertNotNull(id);
-
-        System.out.println(testClass.getEmployee(id));
+        assertEquals(salary.getId(), testClass.getEmployee(id).getSalary().getId());
 
         testClass.deleteEmployee(id);
         assertNull(testClass.getEmployee(id));
