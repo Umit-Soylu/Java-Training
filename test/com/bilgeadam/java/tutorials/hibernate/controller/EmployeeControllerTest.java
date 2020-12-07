@@ -1,5 +1,6 @@
 package com.bilgeadam.java.tutorials.hibernate.controller;
 
+import com.bilgeadam.java.tutorials.hibernate.entities.Address;
 import com.bilgeadam.java.tutorials.hibernate.entities.Employee;
 import com.bilgeadam.java.tutorials.hibernate.entities.Roles;
 import com.bilgeadam.java.tutorials.hibernate.entities.Salary;
@@ -7,7 +8,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -51,6 +54,23 @@ class EmployeeControllerTest {
         int id = testClass.addEmployee(employee);
         assertEquals(salary.getId(), testClass.getEmployee(id).getSalary().getId());
 
+        testClass.deleteEmployee(id);
+        assertNull(testClass.getEmployee(id));
+    }
+
+    @Test
+    void addEmployeeWithAddress() {
+        Employee employee = new Employee("Employee", "Test");
+        Address address = new Address("Test", "TR", "Ist", "Bilge Adam", 11111);
+        address.setEmployee(employee);
+        Set<Address> addresses = new HashSet<>();
+        addresses.add(address);
+        employee.setAddresses(addresses);
+
+        //employee.getSalary().setEmployee(employee);
+        int id = testClass.addEmployee(employee);
+        boolean res = testClass.getEmployee(id).getAddresses().stream().findAny().stream().anyMatch(e -> e.getId() == address.getId());
+        System.out.println("res = " + res);
         testClass.deleteEmployee(id);
         assertNull(testClass.getEmployee(id));
     }

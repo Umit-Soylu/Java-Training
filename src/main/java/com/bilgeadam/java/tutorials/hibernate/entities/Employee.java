@@ -2,6 +2,7 @@ package com.bilgeadam.java.tutorials.hibernate.entities;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "employees")
@@ -27,6 +28,9 @@ public class Employee {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "salary_id", referencedColumnName = "id")
     private Salary salary;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.EAGER) //Fetches the values always.
+    private Set<Address> addresses;
 
     // Hibernate needs this
     public Employee() {
@@ -90,15 +94,24 @@ public class Employee {
         this.salary = salary;
     }
 
+    public Set<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(Set<Address> addresses) {
+        this.addresses = addresses;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
-                "birthday=" + birthday +
-                ", currentRole=" + currentRole +
+                "id=" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", id=" + id +
                 ", lastName='" + lastName + '\'' +
-                ", salary=" + salary +
+                ", birthday=" + birthday + '\'' +
+                ", salary=" + salary + '\'' +
+                ", currentRole=" + currentRole + '\'' +
+                ", addresses=" + addresses +
                 '}';
     }
 }
