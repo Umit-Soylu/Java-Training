@@ -1,6 +1,7 @@
 package com.bilgeadam.java.tutorials.hibernate.config;
 
 import com.bilgeadam.java.tutorials.hibernate.entities.Address;
+import com.bilgeadam.java.tutorials.hibernate.entities.Department;
 import com.bilgeadam.java.tutorials.hibernate.entities.Employee;
 import com.bilgeadam.java.tutorials.hibernate.entities.Salary;
 import org.hibernate.HibernateException;
@@ -69,6 +70,7 @@ public class SessionFactoryGenerator {
         configuration.addAnnotatedClass(Employee.class);
         configuration.addAnnotatedClass(Salary.class);
         configuration.addAnnotatedClass(Address.class);
+        configuration.addAnnotatedClass(Department.class);
 
         try {
             result = configuration.buildSessionFactory();

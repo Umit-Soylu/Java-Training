@@ -124,4 +124,43 @@ class EmployeeControllerTest {
 
         testClass.deleteEmployee(id);
     }
+
+    @Test
+    void addEmployeeWithDepartments() {
+        Employee employeeOne = new Employee("EmployeeOne", "Dept");
+        Employee employeeTwo = new Employee("EmployeeTwo", "Dept");
+        Department departmentOne = new Department("one");
+        Department departmentTwo = new Department("two");
+
+        // First Case
+        Set<Department> departments = new HashSet<>();
+        departments.add(departmentOne);
+        employeeOne.setDepartments(departments);
+        int id = testClass.addEmployee(employeeOne);
+        assertTrue(
+                Arrays.equals(departments.stream().mapToLong(Department::getId).toArray(),
+                        testClass.getEmployeeDepartments(id).stream().mapToLong(Department::getId).toArray()));
+
+        // Second Case
+        employeeTwo.setDepartments(departments);
+        id = testClass.addEmployee(employeeTwo);
+
+        // Third Case
+        departments.add(departmentTwo);
+        employeeOne.setDepartments(departments);
+        id = testClass.addEmployee(employeeOne);
+        assertTrue(
+                Collections.singletonList(departments.stream().mapToLong(Department::getId).toArray()).
+                        containsAll(Collections.singleton(testClass.getEmployeeDepartments(id).stream().mapToLong(Department::getId).toArray())));
+
+        // Forth Case
+        employeeTwo.setDepartments(departments);
+        id = testClass.addEmployee(employeeTwo);
+        assertTrue(
+                Collections.singletonList(departments.stream().mapToLong(Department::getId).toArray()).
+                        containsAll(Collections.singleton(testClass.getEmployeeDepartments(id).stream().mapToLong(Department::getId).toArray())));
+
+        testClass.deleteEmployee(id);
+        assertNull(testClass.getEmployee(id));
+    }
 }

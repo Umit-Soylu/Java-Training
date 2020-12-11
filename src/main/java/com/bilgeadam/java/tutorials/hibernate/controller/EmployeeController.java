@@ -1,13 +1,11 @@
 package com.bilgeadam.java.tutorials.hibernate.controller;
 
 import com.bilgeadam.java.tutorials.hibernate.config.SessionFactoryGenerator;
+import com.bilgeadam.java.tutorials.hibernate.entities.Department;
 import com.bilgeadam.java.tutorials.hibernate.entities.Employee;
 
 import com.bilgeadam.java.tutorials.hibernate.entities.Roles;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -19,6 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 
 public class EmployeeController {
@@ -182,5 +181,38 @@ public class EmployeeController {
         } finally {
             session.close();
         }
+    }
+
+    /**
+     * Gets the employee departments according to id
+     * @param id Primary key of the employee
+     * @return departments of the employee
+     */
+    public Set<Department> getEmployeeDepartments(int id){
+        // Acquire session using factory
+        Session session = sessionFactory.openSession();
+
+        // Create transaction - manipulate DB after this.
+        Transaction transaction = null;
+
+        // Result list
+        Set<Department> departments = null;
+
+        try{
+            transaction = session.beginTransaction();
+            //departments =
+            Employee employee = session.get(Employee.class, id);//.getDepartments();
+            Hibernate.initialize(employee.getDepartments());
+            departments = employee.getDepartments();
+            // Commit the transaction
+            transaction.commit();
+        } catch (Exception exception){
+            if (transaction != null)
+                transaction.rollback();
+        } finally {
+            session.close();
+        }
+
+        return departments;
     }
 }
