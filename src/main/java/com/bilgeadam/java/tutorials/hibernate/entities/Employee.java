@@ -32,6 +32,12 @@ public class Employee {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "employee", fetch = FetchType.EAGER) //Fetches the values always.
     private Set<Address> addresses;
 
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "employees_departments",
+            joinColumns = {@JoinColumn(referencedColumnName = "id", name = "emp_id")},
+            inverseJoinColumns = {@JoinColumn(referencedColumnName = "no", name = "dept_id")})
+    private Set<Department> departments;
+
     // Hibernate needs this
     public Employee() {
     }
@@ -102,6 +108,14 @@ public class Employee {
         this.addresses = addresses;
     }
 
+    public Set<Department> getDepartments() {
+        return departments;
+    }
+
+    public void setDepartments(Set<Department> departments) {
+        this.departments = departments;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -112,6 +126,7 @@ public class Employee {
                 ", salary=" + salary + '\'' +
                 ", currentRole=" + currentRole + '\'' +
                 ", addresses=" + addresses +
+                ", departments=" + departments +
                 '}';
     }
 }
