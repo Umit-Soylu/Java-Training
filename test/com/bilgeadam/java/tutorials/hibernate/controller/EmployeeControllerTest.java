@@ -1,16 +1,11 @@
 package com.bilgeadam.java.tutorials.hibernate.controller;
 
-import com.bilgeadam.java.tutorials.hibernate.entities.Address;
-import com.bilgeadam.java.tutorials.hibernate.entities.Employee;
-import com.bilgeadam.java.tutorials.hibernate.entities.Roles;
-import com.bilgeadam.java.tutorials.hibernate.entities.Salary;
+import com.bilgeadam.java.tutorials.hibernate.entities.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -149,16 +144,11 @@ class EmployeeControllerTest {
         departments.add(departmentTwo);
         employeeOne.setDepartments(departments);
         id = testClass.addEmployee(employeeOne);
-        assertTrue(
-                Collections.singletonList(departments.stream().mapToLong(Department::getId).toArray()).
-                        containsAll(Collections.singleton(testClass.getEmployeeDepartments(id).stream().mapToLong(Department::getId).toArray())));
-
+        assertEquals(departments.size(), testClass.getEmployeeDepartments(id).size());
         // Forth Case
         employeeTwo.setDepartments(departments);
         id = testClass.addEmployee(employeeTwo);
-        assertTrue(
-                Collections.singletonList(departments.stream().mapToLong(Department::getId).toArray()).
-                        containsAll(Collections.singleton(testClass.getEmployeeDepartments(id).stream().mapToLong(Department::getId).toArray())));
+        assertEquals(departments.size(), testClass.getEmployeeDepartments(id).size());
 
         testClass.deleteEmployee(id);
         assertNull(testClass.getEmployee(id));
